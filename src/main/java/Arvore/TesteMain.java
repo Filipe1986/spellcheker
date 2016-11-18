@@ -12,9 +12,9 @@ public class TesteMain {
 		ArrayList<String> palavras = LeitorDeArquivoZip.lerArquivo("dictionary_pt-br.zip", "dictionary pt-br.dic");
 		tree.adicionaListaDeNo(palavras);
 
-		String palavra = "Filipe";
+		String palavra = "CENARIO";
 
-		List<String> results = tree.busca(palavra, 2);
+		List<String> results = tree.busca(palavra, 1);
 		System.out.println(results);
 
 	}
