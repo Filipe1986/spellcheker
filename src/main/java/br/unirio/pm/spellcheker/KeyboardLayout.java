@@ -4,9 +4,34 @@ import java.util.ArrayList;
 
 public class KeyboardLayout {
 
-	private String modelo;
+	private String model;
+	private ArrayList<Line> lines;
+	
+	public KeyboardLayout()
+	{
+		lines = new ArrayList<Line>();
+	}
 
-	private ArrayList<Line> linhas;
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public ArrayList<Line> getLines() {
+		return lines;
+	}
+
+	public void setLines(ArrayList<Line> lines) {
+		this.lines = lines;
+	}
+	
+	public void addLine(Line line)
+	{
+		lines.add(line);
+	}
 
 	public void prepareDistances() {
 		// TODO Auto-generated method stub
@@ -27,20 +52,17 @@ public class KeyboardLayout {
 		return 0;
 	}
 
-	public String getModelo() {
-		return modelo;
-	}
-
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
-
-	public ArrayList<Line> getLinhas() {
-		return linhas;
-	}
-
-	public void setLinhas(ArrayList<Line> linhas) {
-		this.linhas = linhas;
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		
+		String s = model + "\n \n";
+		
+		for (Line line : lines) {
+			s+=line.toString() + "\n";
+		}
+		
+		return s;
 	}
 
 }

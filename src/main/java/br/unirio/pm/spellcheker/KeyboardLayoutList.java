@@ -6,17 +6,17 @@ import java.util.List;
 
 public class KeyboardLayoutList {
 
-	private List<KeyboardLayout> layouts;
+	private List<KeyboardLayout> layout;
 
 	public KeyboardLayoutList() {
 
 	}
 
 	public void add(KeyboardLayout p) {
-		if (layouts == null) {
-			layouts = new ArrayList<KeyboardLayout>();
+		if (layout == null) {
+			layout = new ArrayList<KeyboardLayout>();
 		}
-		layouts.add(p);
+		layout.add(p);
 	}
 
 	public KeyboardLayout getLayoutByName(String string) {
@@ -24,27 +24,33 @@ public class KeyboardLayoutList {
 	}
 
 	public List<KeyboardLayout> getList() {
-		return layouts;
+		return layout;
 	}
 
 	public void setList(List<KeyboardLayout> list) {
-		if (layouts == null) {
-			layouts = new ArrayList<KeyboardLayout>();
+		if (layout == null) {
+			layout = new ArrayList<KeyboardLayout>();
 		}
-		this.layouts = list;
+		this.layout = list;
 	}
 
 	public Iterator<KeyboardLayout> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public List<KeyboardLayout> getLayout() {
-		return layouts;
-	}
-
-	public void setLayout(List<KeyboardLayout> layout) {
-		this.layouts = layout;
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String s = "\n";
+				
+		for (KeyboardLayout keyboardLayout : layout) 
+		{
+			s+= keyboardLayout.toString();
+		}
+		
+		
+		return s;
 	}
 
 }

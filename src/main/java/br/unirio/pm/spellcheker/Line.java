@@ -2,15 +2,20 @@ package br.unirio.pm.spellcheker;
 
 public class Line {
 
-	private String nome;
+	private String content;
 	private double offset;
-
-	public String getNome() {
-		return nome;
+	
+	public Line()
+	{
+		
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public double getOffset() {
@@ -20,5 +25,13 @@ public class Line {
 	public void setOffset(double offset) {
 		this.offset = offset;
 	}
-
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String s = content +  " " + offset;
+		
+		return s;
+	}
+	
 }
