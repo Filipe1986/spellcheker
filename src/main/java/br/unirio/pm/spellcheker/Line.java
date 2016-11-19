@@ -2,20 +2,15 @@ package br.unirio.pm.spellcheker;
 
 public class Line {
 
-	private String content;
+	private String conteudo;
 	private double offset;
-	
-	public Line()
-	{
-		
-	}
 
 	public String getContent() {
-		return content;
+		return conteudo;
 	}
 
 	public void setContent(String content) {
-		this.content = content;
+		this.conteudo = content;
 	}
 
 	public double getOffset() {
@@ -25,13 +20,26 @@ public class Line {
 	public void setOffset(double offset) {
 		this.offset = offset;
 	}
-	
+
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		String s = content +  " " + offset;
-		
-		return s;
+		String string = conteudo + " " + offset;
+
+		return string;
 	}
-	
+
+	public char charAt(int i) {
+		return conteudo.charAt(i);
+
+	}
+
+	public int getTamanho() {
+
+		return conteudo.length();
+	}
+
+	public int getLength() {
+		return conteudo.length();
+	}
+
 }

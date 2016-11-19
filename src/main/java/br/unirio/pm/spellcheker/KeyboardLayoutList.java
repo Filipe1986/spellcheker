@@ -6,50 +6,55 @@ import java.util.List;
 
 public class KeyboardLayoutList {
 
-	private List<KeyboardLayout> layout;
+	private List<KeyboardLayout> layouts;
 
 	public KeyboardLayoutList() {
 
 	}
 
 	public void add(KeyboardLayout p) {
-		if (layout == null) {
-			layout = new ArrayList<KeyboardLayout>();
+		if (layouts == null) {
+			layouts = new ArrayList<KeyboardLayout>();
 		}
-		layout.add(p);
+		layouts.add(p);
 	}
 
 	public KeyboardLayout getLayoutByName(String string) {
-		return null;
+		KeyboardLayout layout = null;
+		for (KeyboardLayout keyboardLayout : layouts) {
+			if (keyboardLayout.getModel().equals(string)) {
+				layout = keyboardLayout;
+			}
+		}
+		return layout;
+
 	}
 
 	public List<KeyboardLayout> getList() {
-		return layout;
+		return layouts;
 	}
 
 	public void setList(List<KeyboardLayout> list) {
-		if (layout == null) {
-			layout = new ArrayList<KeyboardLayout>();
+		if (layouts == null) {
+			layouts = new ArrayList<KeyboardLayout>();
 		}
-		this.layout = list;
+		this.layouts = list;
 	}
 
 	public Iterator<KeyboardLayout> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		String s = "\n";
-				
-		for (KeyboardLayout keyboardLayout : layout) 
-		{
-			s+= keyboardLayout.toString();
+
+		for (KeyboardLayout keyboardLayout : layouts) {
+			s += keyboardLayout.toString();
 		}
-		
-		
+
 		return s;
 	}
 

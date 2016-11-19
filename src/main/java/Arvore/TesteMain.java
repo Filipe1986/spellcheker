@@ -3,8 +3,6 @@ package Arvore;
 import java.util.ArrayList;
 import java.util.List;
 
-/*import LeitorDeArquivoZip;*/
-
 public class TesteMain {
 
 	public static void main(String[] args) {
