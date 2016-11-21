@@ -12,17 +12,17 @@ public class KeyboardLayoutList {
 
 	}
 
-	public void add(KeyboardLayout p) {
+	public void add(KeyboardLayout keyboardLayout) {
 		if (layouts == null) {
 			layouts = new ArrayList<KeyboardLayout>();
 		}
-		layouts.add(p);
+		layouts.add(keyboardLayout);
 	}
 
-	public KeyboardLayout getLayoutByName(String string) {
+	public KeyboardLayout getLayoutByName(String nomeLayout) {
 		KeyboardLayout layout = null;
 		for (KeyboardLayout keyboardLayout : layouts) {
-			if (keyboardLayout.getModel().equals(string)) {
+			if (keyboardLayout.getModel().equals(nomeLayout)) {
 				layout = keyboardLayout;
 			}
 		}
@@ -30,6 +30,9 @@ public class KeyboardLayoutList {
 
 	}
 
+	/**
+	 * Retorna lista de layouts
+	 */
 	public List<KeyboardLayout> getList() {
 		return layouts;
 	}
@@ -44,18 +47,6 @@ public class KeyboardLayoutList {
 	public Iterator<KeyboardLayout> iterator() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		String s = "\n";
-
-		for (KeyboardLayout keyboardLayout : layouts) {
-			s += keyboardLayout.toString();
-		}
-
-		return s;
 	}
 
 }

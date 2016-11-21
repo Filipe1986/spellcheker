@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class KeyboardLayout {
 
+	private static final int NUMERO_PADRAO_DE_LETRAS = 26;
 	private static final int LetraMaiusculaPraPosicaoNoVetor = 65;
 	private String model;
 	private ArrayList<Line> lines;
@@ -12,7 +13,8 @@ public class KeyboardLayout {
 
 	public KeyboardLayout() {
 		lines = new ArrayList<Line>();
-		tabela = new ParOrdenado[26];
+
+		tabela = new ParOrdenado[NUMERO_PADRAO_DE_LETRAS];
 	}
 
 	public String getModel() {

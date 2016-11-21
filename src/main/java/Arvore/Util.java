@@ -22,6 +22,7 @@ public class Util {
 				int dist1 = distancia[i - 1][j] + 1;
 				int dist2 = distancia[i][j - 1] + 1;
 				int dist3 = distancia[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0 : 1);
+
 				int dist4 = Math.min(dist1, dist2);
 				distancia[i][j] = Math.min(dist3, dist4);
 			}

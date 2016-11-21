@@ -135,6 +135,13 @@ public class Demerau {
 				int d = ((string1.charAt(i - 1) == string2.charAt(j - 1)) ? 0 : 1);
 				if (d == 0)
 					db = j;
+				/*
+				 * Damerou - mais dois ifs depois do lavenshtein 21. if
+				 * not(String1 starts with x) and not (String2 starts with y)
+				 * then 22. if (the symbol preceding x= y) and (the symbol
+				 * preceding y=x) then 23. distance(r,c)=minimum(distance(r,c),
+				 * distance(r-2,c-2)+cost)
+				 */
 
 				matriz[i + 1][j + 1] = Math.min(Math.min(matriz[i][j] + d, matriz[i + 1][j] + 1),
 						Math.min(matriz[i][j + 1] + 1, matriz[i1][j1] + (i - i1 - 1) + 1 + (j - j1 - 1)));
