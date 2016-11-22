@@ -5,6 +5,10 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.unirio.pm.keyboard.KeyboardLayout;
+import br.unirio.pm.keyboard.KeyboardLayoutList;
+import br.unirio.pm.readers.KeyboardLayoutReader;
+
 /**
  * Casos de teste para a distância entre teclas em modelos de teclado
  * 

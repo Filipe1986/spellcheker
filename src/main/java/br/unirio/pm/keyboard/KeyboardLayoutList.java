@@ -1,16 +1,12 @@
-package br.unirio.pm.spellcheker;
+package br.unirio.pm.keyboard;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class KeyboardLayoutList {
+public class KeyboardLayoutList implements Iterable<KeyboardLayout> {
 
 	private List<KeyboardLayout> layouts;
-
-	public KeyboardLayoutList() {
-
-	}
 
 	public void add(KeyboardLayout keyboardLayout) {
 		if (layouts == null) {
@@ -27,7 +23,6 @@ public class KeyboardLayoutList {
 			}
 		}
 		return layout;
-
 	}
 
 	/**
@@ -45,8 +40,8 @@ public class KeyboardLayoutList {
 	}
 
 	public Iterator<KeyboardLayout> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		Iterator<KeyboardLayout> iterador = layouts.iterator();
+		return iterador;
 	}
 
 }

@@ -1,4 +1,6 @@
-package br.unirio.pm.spellcheker;
+package br.unirio.pm.distancia;
+
+import br.unirio.pm.keyboard.KeyboardLayout;
 
 public class DemerauLevenshteinCalculator implements IDistanceCalculator {
 

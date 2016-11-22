@@ -5,6 +5,17 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.unirio.pm.Tree.BurkhardKellerTree;
+import br.unirio.pm.Tree.BurkhardKellerTreeSearchResult;
+import br.unirio.pm.distancia.DemerauLevenshteinCalculator;
+import br.unirio.pm.distancia.IDistanceCalculator;
+import br.unirio.pm.distancia.LevenshteinCalculator;
+import br.unirio.pm.keyboard.KeyboardLayout;
+import br.unirio.pm.keyboard.KeyboardLayoutList;
+import br.unirio.pm.keyboard.KeyboardLayoutNeutro;
+import br.unirio.pm.readers.DictionaryReader;
+import br.unirio.pm.readers.KeyboardLayoutReader;
+
 /**
  * Casos de teste do verificador ortográfico
  * 
@@ -15,11 +26,11 @@ public class TestSpellChecker {
 
 	@BeforeClass
 	public static void setup() {
-		layouts = new KeyboardLayoutReader().loadFromFile("data/keyboardlayouts.xml");
+		layouts = new KeyboardLayoutReader().loadFromFile("layouts.xml");
 
-		/*
-		 * for (KeyboardLayout layout : layouts) layout.prepareDistances();
-		 */
+		for (KeyboardLayout layout : layouts)
+			layout.prepareDistances();
+
 	}
 
 	@Test
@@ -64,7 +75,7 @@ public class TestSpellChecker {
 	public void testDemerauTecladoNeutro() {
 		KeyboardLayout layout = new KeyboardLayoutNeutro();
 		IDistanceCalculator calculator = new DemerauLevenshteinCalculator(layout);
-		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("data/dictionary pt-br.zip", calculator);
+		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary pt-br.zip", calculator);
 
 		BurkhardKellerTreeSearchResult result1 = tree.search("casa", 1, 10);
 		check(result1, 0, "casa", 0.0);
@@ -102,7 +113,7 @@ public class TestSpellChecker {
 	public void testLevenshteinTecladoQwerty() {
 		KeyboardLayout layout = layouts.getLayoutByName("QWERTY");
 		IDistanceCalculator calculator = new LevenshteinCalculator(layout);
-		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("data/dictionary pt-br.zip", calculator);
+		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary pt-br.zip", calculator);
 
 		BurkhardKellerTreeSearchResult result = tree.search("casa", 1, 10);
 		check(result, 0, "casa", 0.0);
@@ -145,7 +156,7 @@ public class TestSpellChecker {
 	public void testDemerauTecladoQwerty() {
 		KeyboardLayout layout = layouts.getLayoutByName("QWERTY");
 		IDistanceCalculator calculator = new DemerauLevenshteinCalculator(layout);
-		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("data/dictionary pt-br.zip", calculator);
+		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary pt-br.zip", calculator);
 
 		BurkhardKellerTreeSearchResult result = tree.search("casa", 1, 10);
 		check(result, 0, "casa", 0.0);
@@ -188,7 +199,7 @@ public class TestSpellChecker {
 	public void testLevenshteinTecladoDvorak() {
 		KeyboardLayout layout = layouts.getLayoutByName("DVORAK");
 		IDistanceCalculator calculator = new LevenshteinCalculator(layout);
-		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("data/dictionary pt-br.zip", calculator);
+		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary pt-br.zip", calculator);
 
 		BurkhardKellerTreeSearchResult result = tree.search("casa", 1, 10);
 		check(result, 0, "casa", 0.0);

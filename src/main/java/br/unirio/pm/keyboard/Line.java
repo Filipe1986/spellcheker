@@ -1,4 +1,4 @@
-package br.unirio.pm.spellcheker;
+package br.unirio.pm.keyboard;
 
 public class Line {
 
@@ -9,7 +9,7 @@ public class Line {
 		return conteudo;
 	}
 
-	public void setContent(String content) {
+	public void setConteudo(String content) {
 		this.conteudo = content;
 	}
 
@@ -19,13 +19,6 @@ public class Line {
 
 	public void setOffset(double offset) {
 		this.offset = offset;
-	}
-
-	@Override
-	public String toString() {
-		String string = conteudo + " " + offset;
-
-		return string;
 	}
 
 	public char charAt(int i) {
@@ -40,6 +33,13 @@ public class Line {
 
 	public int getLength() {
 		return conteudo.length();
+	}
+
+	@Override
+	public String toString() {
+		String string = conteudo + " " + offset;
+
+		return string;
 	}
 
 }

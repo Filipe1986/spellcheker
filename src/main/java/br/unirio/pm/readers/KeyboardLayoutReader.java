@@ -1,27 +1,35 @@
-package br.unirio.pm.spellcheker;
+package br.unirio.pm.readers;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import br.unirio.pm.keyboard.KeyboardLayout;
+import br.unirio.pm.keyboard.KeyboardLayoutList;
+import br.unirio.pm.keyboard.Line;
 
 public class KeyboardLayoutReader {
 
 	public KeyboardLayoutList loadFromFile(String caminhoProArquivo) {
 
-		KeyboardLayoutList keylaylist = new KeyboardLayoutList();
+		KeyboardLayoutList keyboardLayoutList = new KeyboardLayoutList();
+
+		File file = new File(caminhoProArquivo);
+		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 
 		try {
 
-			File fXmlFile = new File(caminhoProArquivo);
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
+			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+			Document doc = documentBuilder.parse(file);
 
 			doc.getDocumentElement().normalize();
 
@@ -33,38 +41,38 @@ public class KeyboardLayoutReader {
 
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
-					KeyboardLayout kl = new KeyboardLayout();
+					KeyboardLayout keyboardLayout = new KeyboardLayout();
 
 					Element eElement = (Element) nNode;
 
-					kl.setModel(eElement.getAttribute("model"));
+					keyboardLayout.setModel(eElement.getAttribute("model"));
 
 					for (int i = 0; i < 3; i++) {
 						Line line = new Line();
 
 						String content = eElement.getElementsByTagName("line").item(i).getTextContent();
-						line.setContent(content);
-						kl.addLine(line);
+						line.setConteudo(content);
+						keyboardLayout.addLine(line);
 
-						String offset = ""
-								+ eElement.getElementsByTagName("line").item(i).getAttributes().getNamedItem("offset");
-						if (!offset.equals("null")) {
-							offset = offset.substring(8, offset.length() - 1);
-							Double cont = Double.parseDouble(offset);
-							line.setOffset(cont);
+						String offsetString = eElement.getElementsByTagName("line").item(i).getAttributes()
+								.getNamedItem("offset").toString();
 
+						if (!offsetString.equals("null")) {
+
+							Double offsetDouble = Double
+									.parseDouble(offsetString.substring(8, offsetString.length() - 1));
+
+							line.setOffset(offsetDouble);
 						}
 
-						keylaylist.add(kl);
+						keyboardLayoutList.add(keyboardLayout);
 					}
 				}
 			}
-		} catch (Exception e) {
+		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 		}
 
-		return keylaylist;
-
+		return keyboardLayoutList;
 	}
-
 }

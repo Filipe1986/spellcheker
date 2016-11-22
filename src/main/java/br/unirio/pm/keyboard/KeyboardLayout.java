@@ -1,4 +1,4 @@
-package br.unirio.pm.spellcheker;
+package br.unirio.pm.keyboard;
 
 import java.util.ArrayList;
 
@@ -83,11 +83,11 @@ public class KeyboardLayout {
 
 	@Override
 	public String toString() {
-		String s = model + "\n \n";
+		String string = model + "\n \n";
 		for (Line line : lines) {
-			s += line.toString() + "\n";
+			string += line + "\n";
 		}
-		return s;
+		return string;
 	}
 
 	private double dist(double largura, double altura) {

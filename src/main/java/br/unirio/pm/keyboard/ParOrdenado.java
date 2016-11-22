@@ -1,4 +1,4 @@
-package br.unirio.pm.spellcheker;
+package br.unirio.pm.keyboard;
 
 public class ParOrdenado {
 

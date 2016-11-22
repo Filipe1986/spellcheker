@@ -1,4 +1,4 @@
-package br.unirio.pm.spellcheker;
+package br.unirio.pm.readers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,6 +7,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+
+import br.unirio.pm.Tree.BurkhardKellerTree;
+import br.unirio.pm.distancia.IDistanceCalculator;
 
 public class DictionaryReader {
 

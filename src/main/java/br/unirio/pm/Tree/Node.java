@@ -1,11 +1,12 @@
-package br.unirio.pm.spellcheker;
+package br.unirio.pm.Tree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Arvore.Util;
+import br.unirio.pm.distancia.LevenshteinCalculator;
+import br.unirio.pm.keyboard.KeyboardLayout;
 
 public class Node {
 
@@ -28,7 +29,9 @@ public class Node {
 
 		List<String> palavrasCompativeis = new ArrayList<String>();
 
-		int distanciaLevenshtein = Util.computeLevenshteinDistance(palavra, no);
+		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(new KeyboardLayout());
+
+		int distanciaLevenshtein = levenshteinCalculator.distance(palavra, no);
 		if (distanciaLevenshtein <= distanciaMaxima) {
 			palavrasCompativeis.add(palavra);
 		}
@@ -46,6 +49,31 @@ public class Node {
 			}
 		}
 		return palavrasCompativeis;
+	}
+
+	public List<String> busca(String no, int distanciaMaxima, KeyboardLayout layout) {
+		List<String> palavrasCompativeis = new ArrayList<String>();
+		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(layout);
+
+		int distanciaLevenshtein = levenshteinCalculator.distance(palavra, no);
+		if (distanciaLevenshtein <= distanciaMaxima) {
+			palavrasCompativeis.add(palavra);
+		}
+
+		if (filhos.size() == 0) {
+			return palavrasCompativeis;
+		}
+
+		for (int i = Math.max(1, distanciaLevenshtein - distanciaMaxima); i <= distanciaLevenshtein
+				+ distanciaMaxima; i++) {
+
+			Node filho = filhos.get(i);
+			if (filho != null) {
+				palavrasCompativeis.addAll(filho.busca(no, distanciaMaxima));
+			}
+		}
+		return palavrasCompativeis;
+
 	}
 
 	public boolean equals(Node outroNo) {

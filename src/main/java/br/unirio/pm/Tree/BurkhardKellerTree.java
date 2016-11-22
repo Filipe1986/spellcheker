@@ -1,15 +1,16 @@
-package br.unirio.pm.spellcheker;
+package br.unirio.pm.Tree;
 
 import java.util.List;
 
-import Arvore.Util;
+import br.unirio.pm.distancia.LevenshteinCalculator;
+import br.unirio.pm.keyboard.KeyboardLayout;
 
 public class BurkhardKellerTree {
 
 	private Node raiz;
 
 	public List<String> busca(String str, int distanciaMaximaPermitida) {
-		return raiz.busca(str.toUpperCase(), distanciaMaximaPermitida);
+		return raiz.busca(str.toUpperCase(), distanciaMaximaPermitida, new KeyboardLayout());
 	}
 
 	public BurkhardKellerTreeSearchResult search(String string, int i, int j) {
@@ -51,11 +52,12 @@ public class BurkhardKellerTree {
 			return;
 		}
 
-		//
-		int distancia = Util.computeLevenshteinDistance(srcNode.getPalavra(), novoNo.getPalavra());
-		// Verifica a existencia de um nó na distancia
+		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(new KeyboardLayout());
+
+		int distancia = levenshteinCalculator.distance(srcNode.getPalavra(), novoNo.getPalavra());
+
 		Node bkNode = srcNode.filhosNumaDistancia(distancia);
-		// Se ele não existe adiciona no hashmap
+
 		if (bkNode == null) {
 			srcNode.adicionaNoFilho(distancia, novoNo);
 
