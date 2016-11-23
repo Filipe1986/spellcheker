@@ -6,21 +6,19 @@ public class Damerau implements IDistanceCalculator {
 
 	public int distance(String s1, String s2) {
 
-		// INFinite distance is the max possible distance
 		int distanciaInfinita = s1.length() + s2.length();
 
-		// Create and initialize the character array indices
-		HashMap<Character, Integer> da = new HashMap<Character, Integer>();
+		HashMap<Character, Integer> mapCharInt = new HashMap<Character, Integer>();
 
 		for (int d = 0; d < s1.length(); d++) {
-			if (!da.containsKey(s1.charAt(d))) {
-				da.put(s1.charAt(d), 0);
+			if (!mapCharInt.containsKey(s1.charAt(d))) {
+				mapCharInt.put(s1.charAt(d), 0);
 			}
 		}
 
 		for (int d = 0; d < s2.length(); d++) {
-			if (!da.containsKey(s2.charAt(d))) {
-				da.put(s2.charAt(d), 0);
+			if (!mapCharInt.containsKey(s2.charAt(d))) {
+				mapCharInt.put(s2.charAt(d), 0);
 			}
 		}
 
@@ -46,7 +44,7 @@ public class Damerau implements IDistanceCalculator {
 
 			// look at each character in b
 			for (int j = 1; j <= s2.length(); j++) {
-				int i1 = da.get(s2.charAt(j - 1));
+				int i1 = mapCharInt.get(s2.charAt(j - 1));
 				int j1 = db;
 
 				int cost = 1;
@@ -54,14 +52,9 @@ public class Damerau implements IDistanceCalculator {
 					cost = 0;
 					db = j;
 				}
-
-				h[i + 1][j + 1] = min(h[i][j] + cost, // substituicao
-						h[i + 1][j] + 1, // insercao
-						h[i][j + 1] + 1, // delecao
-						h[i1][j1] + (i - i1 - 1) + 1 + (j - j1 - 1));// transposicao
 			}
 
-			da.put(s1.charAt(i - 1), i);
+			mapCharInt.put(s1.charAt(i - 1), i);
 		}
 
 		return h[s1.length() + 1][s2.length() + 1];

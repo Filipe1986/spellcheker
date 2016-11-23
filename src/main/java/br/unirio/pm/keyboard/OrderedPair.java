@@ -1,8 +1,8 @@
 package br.unirio.pm.keyboard;
 
-public class ParOrdenado {
+public class OrderedPair {
 
-	public ParOrdenado(double x, double y) {
+	public OrderedPair(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}

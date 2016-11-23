@@ -9,12 +9,12 @@ public class KeyboardLayout {
 	private String model;
 	private ArrayList<Line> lines;
 
-	private ParOrdenado[] tabela;
+	private OrderedPair[] tabela;
 
 	public KeyboardLayout() {
 		lines = new ArrayList<Line>();
 
-		tabela = new ParOrdenado[NUMERO_PADRAO_DE_LETRAS];
+		tabela = new OrderedPair[NUMERO_PADRAO_DE_LETRAS];
 	}
 
 	public String getModel() {
@@ -45,7 +45,7 @@ public class KeyboardLayout {
 			for (int i = 0; i < line.getLength(); i++) {
 				char letra = line.charAt(i);
 
-				ParOrdenado parOrdenado = new ParOrdenado(i + ofssetAbsoluto, altura);
+				OrderedPair parOrdenado = new OrderedPair(i + ofssetAbsoluto, altura);
 
 				tabela[letra - LetraMaiusculaPraPosicaoNoVetor] = parOrdenado;
 			}
@@ -61,8 +61,8 @@ public class KeyboardLayout {
 		}
 		c = Character.toUpperCase(c);
 		d = Character.toUpperCase(d);
-		ParOrdenado par1 = tabela[c - LetraMaiusculaPraPosicaoNoVetor];
-		ParOrdenado par2 = tabela[d - LetraMaiusculaPraPosicaoNoVetor];
+		OrderedPair par1 = tabela[c - LetraMaiusculaPraPosicaoNoVetor];
+		OrderedPair par2 = tabela[d - LetraMaiusculaPraPosicaoNoVetor];
 
 		double diferencaLargura = Math.abs(par1.getX() - par2.getX());
 

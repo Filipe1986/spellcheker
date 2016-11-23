@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import br.unirio.pm.Tree.BurkhardKellerTree;
 import br.unirio.pm.Tree.BurkhardKellerTreeSearchResult;
-import br.unirio.pm.distancia.DemerauLevenshteinCalculator;
+import br.unirio.pm.distancia.DamerauLevenshteinCalculator;
 import br.unirio.pm.distancia.IDistanceCalculator;
 import br.unirio.pm.distancia.LevenshteinCalculator;
 import br.unirio.pm.keyboard.KeyboardLayout;
@@ -74,7 +74,7 @@ public class TestSpellChecker {
 	@Test
 	public void testDemerauTecladoNeutro() {
 		KeyboardLayout layout = new KeyboardLayoutNeutro();
-		IDistanceCalculator calculator = new DemerauLevenshteinCalculator(layout);
+		IDistanceCalculator calculator = new DamerauLevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary pt-br.zip", calculator);
 
 		BurkhardKellerTreeSearchResult result1 = tree.search("casa", 1, 10);
@@ -155,7 +155,7 @@ public class TestSpellChecker {
 	@Test
 	public void testDemerauTecladoQwerty() {
 		KeyboardLayout layout = layouts.getLayoutByName("QWERTY");
-		IDistanceCalculator calculator = new DemerauLevenshteinCalculator(layout);
+		IDistanceCalculator calculator = new DamerauLevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary pt-br.zip", calculator);
 
 		BurkhardKellerTreeSearchResult result = tree.search("casa", 1, 10);
