@@ -13,9 +13,10 @@ public class TesteMain {
 		ArrayList<String> palavras = DictionaryReader.lerArquivo("dictionary_pt-br.zip");
 		tree.adicionaListaDeNo(palavras);
 
-		String palavra = "Areia";
+		String palavra = "Filipe";
 
 		List<String> results = tree.busca(palavra, 1);
+		System.out.println(results);
 
 	}
 }

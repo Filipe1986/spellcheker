@@ -25,15 +25,21 @@ public class LevenshteinCalculator implements IDistanceCalculator {
 
 		for (int i = 1; i <= lhs.length(); i++) {
 			for (int j = 1; j <= rhs.length(); j++) {
-				int dist1 = distancia[i - 1][j] + 1;
-				int dist2 = distancia[i][j - 1] + 1;
-				int dist3 = distancia[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0 : 1);
+				int delecao = distancia[i - 1][j] + 1;
+				int insercao = distancia[i][j - 1] + 1;
+				int substituicao = distancia[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0 : 1);
 
-				int dist4 = Math.min(dist1, dist2);
-				distancia[i][j] = Math.min(dist3, dist4);
+				distancia[i][j] = menorValor(delecao, insercao, substituicao);
+
 			}
 		}
 		return distancia[lhs.length()][rhs.length()];
+	}
+
+	private int menorValor(int delecao, int insercao, int substituicao) {
+		int min = (delecao < insercao) ? delecao : insercao;
+		return (min < substituicao) ? min : substituicao;
+
 	}
 
 }

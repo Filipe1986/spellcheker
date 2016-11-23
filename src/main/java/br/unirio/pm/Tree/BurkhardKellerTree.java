@@ -9,15 +9,24 @@ public class BurkhardKellerTree {
 
 	private Node raiz;
 
+	/**
+	 * Chama a funcao de busca do nó
+	 */
 	public List<String> busca(String str, int distanciaMaximaPermitida) {
 		return raiz.busca(str.toUpperCase(), distanciaMaximaPermitida, new KeyboardLayout());
 	}
 
+	/**
+	 * Devolve a arvore resultado da busca
+	 */
 	public BurkhardKellerTreeSearchResult search(String string, int i, int j) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Cria no a partir de string passada e adiciona o no a arvore
+	 */
 	public void adicionaNo(String no) {
 		if (no == null || no.isEmpty()) {
 		} else {
@@ -32,9 +41,7 @@ public class BurkhardKellerTree {
 	}
 
 	/**
-	 * Adiciona lista de strings
-	 * 
-	 * @param nos
+	 * Adiciona lista de palavras nos a arvore
 	 */
 	public void adicionaListaDeNo(List<String> nos) {
 		for (String node : nos) {
@@ -43,9 +50,7 @@ public class BurkhardKellerTree {
 	}
 
 	/**
-	 * 
-	 * @param srcNode
-	 * @param novoNo
+	 * Adiciona nó a árvore
 	 */
 	private void adiciona(Node srcNode, Node novoNo) {
 		if (srcNode.equals(novoNo)) {
