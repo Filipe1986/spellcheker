@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public class KeyboardLayout {
 
-	private static final int NUMERO_PADRAO_DE_LETRAS = 26;
-	private static final int LetraMaiusculaPraPosicaoNoVetor = 65;
+	private static final int DEFAULT_NUMBER_LETTERS = 26;
+	private static final int CHAR_TO_POSITION = 65;
+
 	private String model;
 	private ArrayList<Line> lines;
 
-	private OrderedPair[] tabela;
+	private OrderedPair[] table;
 
 	public KeyboardLayout() {
 		lines = new ArrayList<Line>();
-
-		tabela = new OrderedPair[NUMERO_PADRAO_DE_LETRAS];
+		table = new OrderedPair[DEFAULT_NUMBER_LETTERS];
 	}
 
 	public String getModel() {
@@ -38,35 +38,35 @@ public class KeyboardLayout {
 	}
 
 	public void prepareDistances() {
-		double ofssetAbsoluto = 0;
-		int altura = 0;
+		double absolutOfsset = 0;
+		int height = 0;
 		for (Line line : lines) {
-			ofssetAbsoluto += line.getOffset();
+			absolutOfsset += line.getOffset();
 			for (int i = 0; i < line.getLength(); i++) {
-				char letra = line.charAt(i);
+				char letters = line.charAt(i);
 
-				OrderedPair parOrdenado = new OrderedPair(i + ofssetAbsoluto, altura);
+				OrderedPair orderedPair = new OrderedPair(i + absolutOfsset, height);
 
-				tabela[letra - LetraMaiusculaPraPosicaoNoVetor] = parOrdenado;
+				table[letters - CHAR_TO_POSITION] = orderedPair;
 			}
 
-			altura++;
+			height++;
 		}
 
 	}
 
-	public double getNominalDistance(char c, char d) {
-		if (c == d) {
+	public double getNominalDistance(char firstChar, char secondChar) {
+		if (firstChar == secondChar) {
 			return 0;
 		}
-		c = Character.toUpperCase(c);
-		d = Character.toUpperCase(d);
-		OrderedPair par1 = tabela[c - LetraMaiusculaPraPosicaoNoVetor];
-		OrderedPair par2 = tabela[d - LetraMaiusculaPraPosicaoNoVetor];
+		firstChar = Character.toUpperCase(firstChar);
+		secondChar = Character.toUpperCase(secondChar);
+		OrderedPair pair1 = table[firstChar - CHAR_TO_POSITION];
+		OrderedPair pair2 = table[secondChar - CHAR_TO_POSITION];
 
-		double diferencaLargura = Math.abs(par1.getX() - par2.getX());
+		double diferencaLargura = Math.abs(pair1.getX() - pair2.getX());
 
-		double diferencaAltura = Math.abs(par1.getY() - par2.getY());
+		double diferencaAltura = Math.abs(pair1.getY() - pair2.getY());
 
 		return dist(diferencaLargura, diferencaAltura);
 	}
@@ -77,7 +77,7 @@ public class KeyboardLayout {
 	}
 
 	public double getMaximumDistance() {
-		// TODO Auto-generated method stub
+		// TODO
 		return 0;
 	}
 
@@ -90,12 +90,12 @@ public class KeyboardLayout {
 		return string;
 	}
 
-	private double dist(double largura, double altura) {
-		if (altura == 0.0) {
-			return Math.abs(largura);
+	private double dist(double width, double height) {
+		if (height == 0.0) {
+			return Math.abs(width);
 		}
 
-		return Math.sqrt(largura * largura + altura * altura);
+		return Math.sqrt(width * width + height * height);
 	}
 
 }

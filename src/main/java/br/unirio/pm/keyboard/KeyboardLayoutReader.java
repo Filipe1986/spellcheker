@@ -1,4 +1,4 @@
-package br.unirio.pm.readers;
+package br.unirio.pm.keyboard;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,17 +13,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import br.unirio.pm.keyboard.KeyboardLayout;
-import br.unirio.pm.keyboard.KeyboardLayoutList;
-import br.unirio.pm.keyboard.Line;
-
 public class KeyboardLayoutReader {
 
-	public KeyboardLayoutList loadFromFile(String caminhoProArquivo) {
+	public KeyboardLayoutList loadFromFile(String filePath) {
 
 		KeyboardLayoutList keyboardLayoutList = new KeyboardLayoutList();
 
-		File file = new File(caminhoProArquivo);
+		File file = new File(filePath);
 		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 
 		try {
@@ -50,8 +46,8 @@ public class KeyboardLayoutReader {
 					for (int i = 0; i < 3; i++) {
 						Line line = new Line();
 
-						String content = eElement.getElementsByTagName("line").item(i).getTextContent();
-						line.setConteudo(content);
+						String letters = eElement.getElementsByTagName("line").item(i).getTextContent();
+						line.setLetters(letters);
 						keyboardLayout.addLine(line);
 
 						String offsetString = eElement.getElementsByTagName("line").item(i).getAttributes()

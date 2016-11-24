@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import br.unirio.pm.keyboard.KeyboardLayout;
 import br.unirio.pm.keyboard.KeyboardLayoutList;
-import br.unirio.pm.readers.KeyboardLayoutReader;
+import br.unirio.pm.keyboard.KeyboardLayoutReader;
 
 /**
  * Casos de teste para a distância entre teclas em modelos de teclado
@@ -85,7 +85,7 @@ public class TestKeyboardDistances {
 		layout.prepareDistances();
 		assertEquals(dist(3, 1), layout.getNominalDistance('p', 'a'), 0.001);
 		assertEquals(dist(9, 1), layout.getNominalDistance('z', 'a'), 0.001);
-		/* assertEquals(dist(9.055, 0), layout.getMaximumDistance(), 0.001); */
+		assertEquals(dist(9.055, 0), layout.getMaximumDistance(), 0.001);
 	}
 
 	private double dist(double width, double height) {

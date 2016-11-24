@@ -9,7 +9,7 @@ public class Line {
 		return conteudo;
 	}
 
-	public void setConteudo(String content) {
+	public void setLetters(String content) {
 		this.conteudo = content;
 	}
 

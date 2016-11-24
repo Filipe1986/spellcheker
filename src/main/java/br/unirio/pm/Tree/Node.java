@@ -51,7 +51,7 @@ public class Node {
 		return palavrasCompativeis;
 	}
 
-	public List<String> busca(String no, int distanciaMaxima, KeyboardLayout layout) {
+	public List<String> search(String no, int distanciaMaxima, KeyboardLayout layout) {
 		List<String> palavrasCompativeis = new ArrayList<String>();
 		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(layout);
 

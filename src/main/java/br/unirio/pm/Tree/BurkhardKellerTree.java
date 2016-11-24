@@ -7,13 +7,13 @@ import br.unirio.pm.keyboard.KeyboardLayout;
 
 public class BurkhardKellerTree {
 
-	private Node raiz;
+	private Node root;
 
 	/**
 	 * Chama a funcao de busca do nó
 	 */
-	public List<String> busca(String str, int distanciaMaximaPermitida) {
-		return raiz.busca(str.toUpperCase(), distanciaMaximaPermitida, new KeyboardLayout());
+	public List<String> search(String str, int distanciaMaximaPermitida) {
+		return root.search(str.toUpperCase(), distanciaMaximaPermitida, new KeyboardLayout());
 	}
 
 	/**
@@ -27,15 +27,15 @@ public class BurkhardKellerTree {
 	/**
 	 * Cria no a partir de string passada e adiciona o no a arvore
 	 */
-	public void adicionaNo(String no) {
+	public void addNode(String no) {
 		if (no == null || no.isEmpty()) {
 		} else {
 
 			Node newNode = new Node(no);
-			if (raiz == null) {
-				raiz = newNode;
+			if (root == null) {
+				root = newNode;
 			} else {
-				adiciona(raiz, newNode);
+				add(root, newNode);
 			}
 		}
 	}
@@ -43,33 +43,33 @@ public class BurkhardKellerTree {
 	/**
 	 * Adiciona lista de palavras nos a arvore
 	 */
-	public void adicionaListaDeNo(List<String> nos) {
+	public void addNodeList(List<String> nos) {
 		for (String node : nos) {
-			adicionaNo(node);
+			addNode(node);
 		}
 	}
 
 	/**
 	 * Adiciona nó a árvore
 	 */
-	private void adiciona(Node srcNode, Node novoNo) {
+	private void add(Node srcNode, Node novoNo) {
 		if (srcNode.equals(novoNo)) {
 			return;
 		}
 
 		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(new KeyboardLayout());
 
-		int distancia = levenshteinCalculator.distance(srcNode.getPalavra(), novoNo.getPalavra());
+		int distance = levenshteinCalculator.distance(srcNode.getPalavra(), novoNo.getPalavra());
 
-		Node bkNode = srcNode.filhosNumaDistancia(distancia);
+		Node bkNode = srcNode.filhosNumaDistancia(distance);
 
 		if (bkNode == null) {
-			srcNode.adicionaNoFilho(distancia, novoNo);
+			srcNode.adicionaNoFilho(distance, novoNo);
 
 		}
 		// senao cria um nó filho
 		else {
-			adiciona(bkNode, novoNo);
+			add(bkNode, novoNo);
 		}
 	}
 

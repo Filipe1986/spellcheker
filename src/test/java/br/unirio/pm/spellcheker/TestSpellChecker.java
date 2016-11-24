@@ -13,8 +13,8 @@ import br.unirio.pm.distancia.LevenshteinCalculator;
 import br.unirio.pm.keyboard.KeyboardLayout;
 import br.unirio.pm.keyboard.KeyboardLayoutList;
 import br.unirio.pm.keyboard.KeyboardLayoutNeutro;
+import br.unirio.pm.keyboard.KeyboardLayoutReader;
 import br.unirio.pm.readers.DictionaryReader;
-import br.unirio.pm.readers.KeyboardLayoutReader;
 
 /**
  * Casos de teste do verificador ortográfico

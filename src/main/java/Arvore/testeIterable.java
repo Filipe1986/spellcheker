@@ -2,7 +2,7 @@ package Arvore;
 
 import br.unirio.pm.keyboard.KeyboardLayout;
 import br.unirio.pm.keyboard.KeyboardLayoutList;
-import br.unirio.pm.readers.KeyboardLayoutReader;
+import br.unirio.pm.keyboard.KeyboardLayoutReader;
 
 public class testeIterable {
 

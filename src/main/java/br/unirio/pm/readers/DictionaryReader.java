@@ -18,29 +18,27 @@ public class DictionaryReader {
 		return null;
 	}
 
-	public static ArrayList<String> lerArquivo(String nomeArquivo) {
+	public static ArrayList<String> fileReader(String fileName) {
 
-		ArrayList<String> palavras = new ArrayList<String>();
+		ArrayList<String> words = new ArrayList<String>();
 
 		try {
-			ZipFile zf = new ZipFile(nomeArquivo);
+			ZipFile zf = new ZipFile(fileName);
 
 			ZipEntry entry = zf.entries().nextElement();
 
 			InputStream inputStream = zf.getInputStream(entry);
 			InputStreamReader isr = new InputStreamReader(inputStream);
 			BufferedReader buffer = new BufferedReader(isr);
-			String linha;
-			while ((linha = buffer.readLine()) != null) {
-				palavras.add(linha);
+			String line;
+			while ((line = buffer.readLine()) != null) {
+				words.add(line);
 			}
 			zf.close();
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		}
-
-		return palavras;
+		return words;
 	}
 
 }
