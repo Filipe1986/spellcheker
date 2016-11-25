@@ -17,10 +17,16 @@ public class Node {
 		this.palavra = palavra;
 	}
 
+	/**
+	 * Pega o filho na posição distancia no hashMap
+	 */
 	public Node filhosNumaDistancia(int distancia) {
 		return filhos.get(distancia);
 	}
 
+	/**
+	 * Método usado pela árvore para adicionar o nó na posição do hash
+	 */
 	public void adicionaNoFilho(int posicao, Node noFilho) {
 		filhos.put(posicao, noFilho);
 	}

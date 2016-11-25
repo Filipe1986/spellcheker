@@ -72,8 +72,7 @@ public class KeyboardLayout {
 	}
 
 	public double getInsertDeleteDistance() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 0.25;
 	}
 
 	public double getMaximumDistance() {

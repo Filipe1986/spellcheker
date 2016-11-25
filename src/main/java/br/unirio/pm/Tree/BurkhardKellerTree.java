@@ -56,7 +56,6 @@ public class BurkhardKellerTree {
 		if (srcNode.equals(novoNo)) {
 			return;
 		}
-
 		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(new KeyboardLayout());
 
 		int distance = levenshteinCalculator.distance(srcNode.getPalavra(), novoNo.getPalavra());
