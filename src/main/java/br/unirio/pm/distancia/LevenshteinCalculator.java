@@ -26,10 +26,11 @@ public class LevenshteinCalculator implements IDistanceCalculator {
 
 		for (int i = 1; i <= lhs.length(); i++) {
 			for (int j = 1; j <= rhs.length(); j++) {
-				double deletion = distance[i - 1][j] + (int) layout.getInsertDeleteDistance();
-				double insertion = distance[i][j - 1] + (int) layout.getInsertDeleteDistance();
+				double deletion = distance[i - 1][j] + layout.getInsertDeleteDistance();
+				double insertion = distance[i][j - 1] + layout.getInsertDeleteDistance();
+
 				double substitution = distance[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0
-						: (int) layout.getRelativeDistance(lhs.charAt(i - 1), rhs.charAt(j - 1)));
+						: layout.getRelativeDistance(lhs.charAt(i - 1), rhs.charAt(j - 1)));
 
 				distance[i][j] = lowestValue(deletion, insertion, substitution);
 

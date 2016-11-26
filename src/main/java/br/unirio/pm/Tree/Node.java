@@ -10,11 +10,11 @@ import br.unirio.pm.keyboard.KeyboardLayout;
 
 public class Node {
 
-	private final String palavra;
+	private final String word;
 	private final Map<Integer, Node> filhos = new HashMap<Integer, Node>();
 
 	public Node(String palavra) {
-		this.palavra = palavra;
+		this.word = palavra;
 	}
 
 	/**
@@ -37,9 +37,9 @@ public class Node {
 
 		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(new KeyboardLayout());
 
-		int distanciaLevenshtein = (int) levenshteinCalculator.distance(palavra, no);
+		int distanciaLevenshtein = (int) levenshteinCalculator.distance(word, no);
 		if (distanciaLevenshtein <= distanciaMaxima) {
-			palavrasCompativeis.add(palavra);
+			palavrasCompativeis.add(word);
 		}
 
 		if (filhos.size() == 0) {
@@ -59,11 +59,12 @@ public class Node {
 
 	public List<String> search(String no, int distanciaMaxima, KeyboardLayout layout) {
 		List<String> palavrasCompativeis = new ArrayList<String>();
+
 		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(layout);
 
-		int distanciaLevenshtein = (int) levenshteinCalculator.distance(palavra, no);
+		int distanciaLevenshtein = (int) levenshteinCalculator.distance(word, no);
 		if (distanciaLevenshtein <= distanciaMaxima) {
-			palavrasCompativeis.add(palavra);
+			palavrasCompativeis.add(word);
 		}
 
 		if (filhos.size() == 0) {
@@ -82,12 +83,12 @@ public class Node {
 
 	}
 
-	public boolean equals(Node outroNo) {
-		return palavra.equals(outroNo.palavra);
+	public boolean equals(Node node) {
+		return word.equals(node.word);
 	}
 
-	public String getPalavra() {
-		return palavra;
+	public String getWord() {
+		return word;
 	}
 
 }

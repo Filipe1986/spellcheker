@@ -28,14 +28,17 @@ public class TestSpellChecker {
 	public static void setup() {
 		layouts = new KeyboardLayoutReader().loadFromFile("layouts.xml");
 
-		for (KeyboardLayout layout : layouts)
-			layout.prepareDistances();
+		/*
+		 * for (KeyboardLayout layout : layouts) layout.prepareDistances();
+		 */
 
 	}
 
 	@Test
 	public void testLevenshteintTecladoNeutro() {
 		KeyboardLayout layout = new KeyboardLayoutNeutro();
+		layout.prepareDistances();
+
 		IDistanceCalculator calculator = new LevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary pt-br.zip", calculator);
 
@@ -74,6 +77,7 @@ public class TestSpellChecker {
 	@Test
 	public void testDemerauTecladoNeutro() {
 		KeyboardLayout layout = new KeyboardLayoutNeutro();
+		layout.prepareDistances();
 		IDistanceCalculator calculator = new DamerauLevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary pt-br.zip", calculator);
 
@@ -112,6 +116,7 @@ public class TestSpellChecker {
 	@Test
 	public void testLevenshteinTecladoQwerty() {
 		KeyboardLayout layout = layouts.getLayoutByName("QWERTY");
+		layout.prepareDistances();
 		IDistanceCalculator calculator = new LevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary pt-br.zip", calculator);
 
@@ -155,6 +160,7 @@ public class TestSpellChecker {
 	@Test
 	public void testDemerauTecladoQwerty() {
 		KeyboardLayout layout = layouts.getLayoutByName("QWERTY");
+		layout.prepareDistances();
 		IDistanceCalculator calculator = new DamerauLevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary pt-br.zip", calculator);
 
@@ -198,6 +204,7 @@ public class TestSpellChecker {
 	@Test
 	public void testLevenshteinTecladoDvorak() {
 		KeyboardLayout layout = layouts.getLayoutByName("DVORAK");
+		layout.prepareDistances();
 		IDistanceCalculator calculator = new LevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary pt-br.zip", calculator);
 

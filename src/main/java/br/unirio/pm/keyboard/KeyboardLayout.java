@@ -6,8 +6,8 @@ import br.unirio.pm.distancia.IDistanceCalculator;
 
 public class KeyboardLayout {
 
-	private static final int DEFAULT_NUMBER_LETTERS = 26;
-	private static final int CHAR_TO_POSITION = 65;
+	private final int DEFAULT_NUMBER_LETTERS = 26;
+	private final int CHAR_TO_POSITION = 65;
 
 	private String model;
 	private ArrayList<Line> lines;
@@ -25,11 +25,11 @@ public class KeyboardLayout {
 		this.table = table;
 	}
 
-	public static int getDefaultNumberLetters() {
+	public int getDefaultNumberLetters() {
 		return DEFAULT_NUMBER_LETTERS;
 	}
 
-	public static int getCharToPosition() {
+	public int getCharToPosition() {
 		return CHAR_TO_POSITION;
 	}
 
@@ -58,7 +58,23 @@ public class KeyboardLayout {
 		lines.add(line);
 	}
 
-	public void prepare() {
+	/**
+	 * Monta neutroa tabela de distancia de uma vez apenas
+	 */
+	public void prepareDistance() {
+
+		tableMatrix = new double[DEFAULT_NUMBER_LETTERS][DEFAULT_NUMBER_LETTERS];
+
+		for (int i = 0; i < tableMatrix.length; i++) {
+			for (int j = 0; j < tableMatrix.length; j++) {
+
+				tableMatrix[i][j] = 1;
+			}
+		}
+
+	}
+
+	public void prepareDistances() {
 
 		double absolutOfsset = 0;
 		int height = 0;
@@ -71,23 +87,8 @@ public class KeyboardLayout {
 
 				table[letters - CHAR_TO_POSITION] = orderedPair;
 			}
-
 			height++;
 		}
-
-	}
-
-	/**
-	 * Monta a tabela de distancia de uma vez apenas
-	 */
-	public void prepareDistances() {
-		tableMatrix = new double[26][26];
-		for (int i = 0; i < tableMatrix.length; i++) {
-			for (int j = 0; j < tableMatrix.length; j++) {
-
-			}
-		}
-
 	}
 
 	public double getNominalDistance(char firstChar, char secondChar) {
@@ -106,8 +107,13 @@ public class KeyboardLayout {
 		return dist(diferencaLargura, diferencaAltura);
 	}
 
+	private double dist(double width, double height) {
+
+		return Math.sqrt(width * width + height * height);
+	}
+
 	public double getInsertDeleteDistance() {
-		return 0.25;
+		return 1;
 	}
 
 	public double getMaximumDistance() {
@@ -124,15 +130,7 @@ public class KeyboardLayout {
 	}
 
 	public double getRelativeDistance(char firstChar, char secondChar) {
-		return getNominalDistance(firstChar, secondChar) / getMaximumDistance();
-	}
-
-	private double dist(double width, double height) {
-		if (height == 0.0) {
-			return Math.abs(width);
-		}
-
-		return Math.sqrt(width * width + height * height);
+		return 1;
 	}
 
 }

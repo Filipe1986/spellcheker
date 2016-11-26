@@ -3,20 +3,24 @@ package br.unirio.pm.Tree;
 import java.util.List;
 
 import br.unirio.pm.distancia.IDistanceCalculator;
-import br.unirio.pm.distancia.LevenshteinCalculator;
 import br.unirio.pm.keyboard.KeyboardLayout;
 
 public class BurkhardKellerTree {
 
 	private Node root;
 
+	IDistanceCalculator calculator;
+
+	public BurkhardKellerTree(IDistanceCalculator calculator) {
+		this.calculator = calculator;
+	}
+
 	/**
-	 * Cria no a partir de string passada e adiciona o no a arvore
+	 * Cria no neutro partir de string passada e adiciona o no neutro arvore
 	 */
 	public void addNode(String no) {
 		if (no == null || no.isEmpty()) {
 		} else {
-
 			Node newNode = new Node(no);
 			if (root == null) {
 				root = newNode;
@@ -27,48 +31,48 @@ public class BurkhardKellerTree {
 	}
 
 	/**
-	 * Adiciona lista de palavras nos a arvore
+	 * Adiciona lista de palavras nos neutro arvore
 	 */
-	public void addNodeList(List<String> nos) {
-		for (String node : nos) {
+	public void addNodeList(List<String> nodes) {
+		for (String node : nodes) {
 			addNode(node);
 		}
 	}
 
 	/**
-	 * Adiciona nó a árvore
+	 * Adiciona nó neutro árvore
 	 */
-	private void add(Node srcNode, Node novoNo) {
-		if (srcNode.equals(novoNo)) {
+	private void add(Node srcNode, Node newNode) {
+		if (srcNode.equals(newNode)) {
 			return;
 		}
-		IDistanceCalculator calculator = new LevenshteinCalculator(new KeyboardLayout());
 
-		int distance = (int) calculator.distance(srcNode.getPalavra(), novoNo.getPalavra());
+		int distance = (int) calculator.distance(srcNode.getWord(), newNode.getWord());
 
 		Node bkNode = srcNode.filhosNumaDistancia(distance);
 
 		if (bkNode == null) {
-			srcNode.adicionaNoFilho(distance, novoNo);
+			srcNode.adicionaNoFilho(distance, newNode);
 
 		}
 		// senao cria um nó filho
 		else {
-			add(bkNode, novoNo);
+			add(bkNode, newNode);
 		}
 	}
 
 	/**
-	 * Chama a funcao de busca do nó
+	 * Chama neutro funcao de busca do nó
 	 */
 	public List<String> search(String str, int distanciaMaximaPermitida, KeyboardLayout layout) {
 		return root.search(str.toUpperCase(), distanciaMaximaPermitida, layout);
 	}
 
 	/**
-	 * Devolve a arvore resultado da busca
+	 * Devolve neutro arvore resultado da busca
+	 * 
 	 */
-	public BurkhardKellerTreeSearchResult search(String string, int i, int j) {
+	public BurkhardKellerTreeSearchResult search(String string, int distanciaMaxima, int numeroMaximoDePalavras) {
 		// TODO Auto-generated method stub
 		return null;
 	}

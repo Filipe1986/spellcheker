@@ -17,6 +17,8 @@ public class DictionaryReader {
 
 		ArrayList<String> words = new ArrayList<String>();
 
+		BurkhardKellerTree bkTree = new BurkhardKellerTree(calculator);
+
 		try {
 			ZipFile zf = new ZipFile(fileName);
 
@@ -27,13 +29,17 @@ public class DictionaryReader {
 			BufferedReader buffer = new BufferedReader(isr);
 			String line;
 			while ((line = buffer.readLine()) != null) {
+				line.replaceAll("'", "");
+				line.replaceAll("-", "");
+				line.replaceAll(".", "");
+				bkTree.addNode(line);
 				words.add(line);
+
 			}
 			zf.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		BurkhardKellerTree bkTree = new BurkhardKellerTree();
 		return bkTree;
 
 	}

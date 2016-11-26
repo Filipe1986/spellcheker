@@ -34,7 +34,7 @@ public class DamerauLevenshteinCalculator implements IDistanceCalculator {
 				deletion = distance[i - 1][j] + layout.getInsertDeleteDistance();
 				insertion = distance[i][j - 1] + layout.getInsertDeleteDistance();
 				substitution = distance[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0
-						: (int) layout.getRelativeDistance(lhs.charAt(i - 1), rhs.charAt(j - 1)));
+						: layout.getRelativeDistance(lhs.charAt(i - 1), rhs.charAt(j - 1)));
 
 				// Verifica se é transponivel - Damerou
 				if (isTransposable(lhs, rhs, i, j)) {
