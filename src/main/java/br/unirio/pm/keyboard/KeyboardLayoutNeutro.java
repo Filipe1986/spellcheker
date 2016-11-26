@@ -7,7 +7,7 @@ public class KeyboardLayoutNeutro extends KeyboardLayout {
 	}
 
 	public double getInsertDeleteDistance() {
-		return 1.0;
+		return 1;
 	}
 
 	public double getMaximumDistance() {

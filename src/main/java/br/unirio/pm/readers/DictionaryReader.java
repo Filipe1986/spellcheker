@@ -15,8 +15,6 @@ public class DictionaryReader {
 
 	public BurkhardKellerTree loadFromFile(String fileName, IDistanceCalculator calculator) {
 
-		ArrayList<String> words = new ArrayList<String>();
-
 		BurkhardKellerTree bkTree = new BurkhardKellerTree(calculator);
 
 		try {
@@ -33,7 +31,6 @@ public class DictionaryReader {
 				line.replaceAll("-", "");
 				line.replaceAll(".", "");
 				bkTree.addNode(line);
-				words.add(line);
 
 			}
 			zf.close();

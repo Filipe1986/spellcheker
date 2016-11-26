@@ -1,12 +1,15 @@
 package br.unirio.pm.keyboard;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-public class KeyboardLayoutList implements Iterable<KeyboardLayout> {
+public class KeyboardLayoutList {
 
 	private List<KeyboardLayout> layouts;
+
+	public KeyboardLayoutList() {
+		/* layouts.add(new KeyboardLayoutNeutro()); */
+	}
 
 	public void add(KeyboardLayout keyboardLayout) {
 		if (layouts == null) {
@@ -39,9 +42,17 @@ public class KeyboardLayoutList implements Iterable<KeyboardLayout> {
 		this.layouts = list;
 	}
 
-	public Iterator<KeyboardLayout> iterator() {
-		Iterator<KeyboardLayout> iterador = layouts.iterator();
-		return iterador;
+	public List<KeyboardLayout> getLayouts() {
+		return layouts;
 	}
 
+	@Override
+	public String toString() {
+		String string = "";
+		for (KeyboardLayout keyboardLayout : layouts) {
+			string += keyboardLayout.toString();
+		}
+
+		return string;
+	}
 }

@@ -126,6 +126,7 @@ public class KeyboardLayout {
 		for (Line line : lines) {
 			string += line + "\n";
 		}
+		string += "\n";
 		return string;
 	}
 

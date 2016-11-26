@@ -5,8 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.unirio.pm.distancia.LevenshteinCalculator;
-import br.unirio.pm.keyboard.KeyboardLayout;
+import br.unirio.pm.distancia.IDistanceCalculator;
 
 public class Node {
 
@@ -27,18 +26,15 @@ public class Node {
 	/**
 	 * Método usado pela árvore para adicionar o nó na posição do hash
 	 */
-	public void adicionaNoFilho(int posicao, Node noFilho) {
-		filhos.put(posicao, noFilho);
+	public void addChildNode(int position, Node childNode) {
+		filhos.put(position, childNode);
 	}
 
-	public List<String> busca(String no, int distanciaMaxima) {
-
+	public List<String> search(String no, int distanciaMaxima, IDistanceCalculator calculator) {
 		List<String> palavrasCompativeis = new ArrayList<String>();
 
-		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(new KeyboardLayout());
-
-		int distanciaLevenshtein = (int) levenshteinCalculator.distance(word, no);
-		if (distanciaLevenshtein <= distanciaMaxima) {
+		int distancia = (int) calculator.distance(word, no);
+		if (distancia <= distanciaMaxima) {
 			palavrasCompativeis.add(word);
 		}
 
@@ -46,37 +42,11 @@ public class Node {
 			return palavrasCompativeis;
 		}
 
-		for (int i = Math.max(1, distanciaLevenshtein - distanciaMaxima); i <= distanciaLevenshtein
-				+ distanciaMaxima; i++) {
+		for (int i = Math.max(1, distancia - distanciaMaxima); i <= distancia + distanciaMaxima; i++) {
 
 			Node filho = filhos.get(i);
 			if (filho != null) {
-				palavrasCompativeis.addAll(filho.busca(no, distanciaMaxima));
-			}
-		}
-		return palavrasCompativeis;
-	}
-
-	public List<String> search(String no, int distanciaMaxima, KeyboardLayout layout) {
-		List<String> palavrasCompativeis = new ArrayList<String>();
-
-		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(layout);
-
-		int distanciaLevenshtein = (int) levenshteinCalculator.distance(word, no);
-		if (distanciaLevenshtein <= distanciaMaxima) {
-			palavrasCompativeis.add(word);
-		}
-
-		if (filhos.size() == 0) {
-			return palavrasCompativeis;
-		}
-
-		for (int i = Math.max(1, distanciaLevenshtein - distanciaMaxima); i <= distanciaLevenshtein
-				+ distanciaMaxima; i++) {
-
-			Node filho = filhos.get(i);
-			if (filho != null) {
-				palavrasCompativeis.addAll(filho.busca(no, distanciaMaxima));
+				palavrasCompativeis.addAll(filho.search(no, distanciaMaxima, calculator));
 			}
 		}
 		return palavrasCompativeis;

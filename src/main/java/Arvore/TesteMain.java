@@ -8,16 +8,27 @@ import br.unirio.pm.distancia.DamerauLevenshteinCalculator;
 import br.unirio.pm.distancia.IDistanceCalculator;
 import br.unirio.pm.distancia.LevenshteinCalculator;
 import br.unirio.pm.keyboard.KeyboardLayout;
+import br.unirio.pm.keyboard.KeyboardLayoutList;
 import br.unirio.pm.keyboard.KeyboardLayoutNeutro;
 import br.unirio.pm.readers.DictionaryReader;
+import br.unirio.pm.readers.KeyboardLayoutReader;
 
 public class TesteMain {
 
 	public static void main(String[] args) {
 
-		leve();
-		dadadadada();
-		novo();
+		/*
+		 * leve(); dadadadada(); novo();
+		 */
+		keyboard();
+
+	}
+
+	private static void keyboard() {
+		KeyboardLayoutList keyboardLayoutList = new KeyboardLayoutReader().loadFromFile("layouts.xml");
+		List<KeyboardLayout> list = keyboardLayoutList.getList();
+		System.out.println(list.size());
+		System.out.println(keyboardLayoutList);
 
 	}
 
@@ -56,10 +67,10 @@ public class TesteMain {
 
 		String palavra = "File";
 		System.out.println(palavra);
-		List<String> results = tree.search(palavra, 1, layout);
+		List<String> results = tree.search(palavra, 1, calculator);
 		System.out.println(results);
 		System.out.println("Mel");
-		results = tree.search("mel", 0, layout);
+		results = tree.search("mel", 0, calculator);
 		System.out.println(results);
 	}
 
@@ -70,7 +81,7 @@ public class TesteMain {
 		IDistanceCalculator calculator = new LevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary_pt-br.zip", calculator);
 
-		List<String> palavras = tree.search("Casa", 1, layout);
+		List<String> palavras = tree.search("Casa", 1, calculator);
 		System.out.println(palavras);
 
 	}

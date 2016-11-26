@@ -68,6 +68,7 @@ public class KeyboardLayoutReader {
 					KeyboardLayout kl = new KeyboardLayout();
 					Element eElement = (Element) nNode;
 					kl.setModel(eElement.getAttribute("model"));
+
 					for (int i = 0; i < 3; i++) {
 						Line line = new Line();
 						String content = eElement.getElementsByTagName("line").item(i).getTextContent();
@@ -80,8 +81,9 @@ public class KeyboardLayoutReader {
 							Double cont = Double.parseDouble(offset);
 							line.setOffset(cont);
 						}
-						keylaylist.add(kl);
+
 					}
+					keylaylist.add(kl);
 				}
 			}
 		} catch (Exception e) {

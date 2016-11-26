@@ -38,7 +38,6 @@ public class Line {
 	@Override
 	public String toString() {
 		String string = conteudo + " " + offset;
-
 		return string;
 	}
 
