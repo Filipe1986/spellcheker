@@ -4,22 +4,17 @@ import br.unirio.pm.keyboard.KeyboardLayout;
 
 public class DamerauLevenshteinCalculator implements IDistanceCalculator {
 
+	private KeyboardLayout layout;
+
 	public DamerauLevenshteinCalculator(KeyboardLayout layout) {
-		// TODO Auto-generated constructor stub
+		this.layout = layout;
 	}
 
-	/**
-	 * Construtor vazio pré distancia com layout
-	 */
-	public DamerauLevenshteinCalculator() {
-
-	}
-
-	public int distance(String s1, String s2) {
+	public double distance(String s1, String s2) {
 
 		CharSequence lhs = s1;
 		CharSequence rhs = s2;
-		int[][] distance = new int[lhs.length() + 1][rhs.length() + 1];
+		double[][] distance = new double[lhs.length() + 1][rhs.length() + 1];
 
 		for (int i = 0; i <= lhs.length(); i++) {
 			distance[i][0] = i;
@@ -29,25 +24,27 @@ public class DamerauLevenshteinCalculator implements IDistanceCalculator {
 			distance[0][j] = j;
 
 		}
-		int delecao;
-		int insercao;
-		int substituicao;
-		int transposition;
+		double deletion;
+		double insertion;
+		double substitution;
+		double transposition;
 		for (int i = 1; i <= lhs.length(); i++) {
 			for (int j = 1; j <= rhs.length(); j++) {
 
-				delecao = distance[i - 1][j] + 1;
-				insercao = distance[i][j - 1] + 1;
-				substituicao = distance[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0 : 1);
+				deletion = distance[i - 1][j] + layout.getInsertDeleteDistance();
+				insertion = distance[i][j - 1] + layout.getInsertDeleteDistance();
+				substitution = distance[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0
+						: (int) layout.getRelativeDistance(lhs.charAt(i - 1), rhs.charAt(j - 1)));
 
-				// Verifica se a transponivel - Parte de damerou
+				// Verifica se é transponivel - Damerou
 				if (isTransposable(lhs, rhs, i, j)) {
-					transposition = distance[i - 2][j - 2] + 1;
+					transposition = distance[i - 2][j - 2]
+							+ (int) layout.getNominalDistance(lhs.charAt(i - 1), rhs.charAt(j - 2));
 
-					distance[i][j] = lowestValue(delecao, insercao, substituicao, transposition);
+					distance[i][j] = lowestValue(deletion, insertion, substitution, transposition);
 
 				} else {
-					distance[i][j] = lowestValue(delecao, insercao, substituicao);
+					distance[i][j] = lowestValue(deletion, insertion, substitution);
 				}
 
 			}
@@ -61,17 +58,17 @@ public class DamerauLevenshteinCalculator implements IDistanceCalculator {
 				&& (lhs.charAt(i - 2) == rhs.charAt(j - 1)));
 	}
 
-	private int lowestValue(int deletion, int insertion, int substitution) {
+	private double lowestValue(double deletion, double insertion, double substitution) {
 
-		int min = (deletion < insertion) ? deletion : insertion;
+		double min = (deletion < insertion) ? deletion : insertion;
 		min = (min < substitution) ? min : substitution;
 
 		return min;
 
 	}
 
-	private int lowestValue(int deletion, int insertion, int substitution, int transposition) {
-		int minor = (deletion < insertion) ? deletion : insertion;
+	private double lowestValue(double deletion, double insertion, double substitution, double transposition) {
+		double minor = (deletion < insertion) ? deletion : insertion;
 		minor = (minor < substitution) ? minor : substitution;
 		minor = (minor < transposition) ? minor : transposition;
 		return minor;

@@ -1,5 +1,11 @@
 package br.unirio.pm.Tree;
 
+/**
+ * Árvore de ordenação
+ * 
+ * @author Filipe
+ *
+ */
 public class BurkhardKellerTreeSearchResult {
 
 	public Object getWord(int position) {

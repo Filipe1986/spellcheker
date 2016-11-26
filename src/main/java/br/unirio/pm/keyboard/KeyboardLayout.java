@@ -2,6 +2,8 @@ package br.unirio.pm.keyboard;
 
 import java.util.ArrayList;
 
+import br.unirio.pm.distancia.IDistanceCalculator;
+
 public class KeyboardLayout {
 
 	private static final int DEFAULT_NUMBER_LETTERS = 26;
@@ -9,8 +11,27 @@ public class KeyboardLayout {
 
 	private String model;
 	private ArrayList<Line> lines;
+	private double[][] tableMatrix;
 
 	private OrderedPair[] table;
+
+	private IDistanceCalculator calculator;
+
+	protected OrderedPair[] getTable() {
+		return table;
+	}
+
+	protected void setTable(OrderedPair[] table) {
+		this.table = table;
+	}
+
+	public static int getDefaultNumberLetters() {
+		return DEFAULT_NUMBER_LETTERS;
+	}
+
+	public static int getCharToPosition() {
+		return CHAR_TO_POSITION;
+	}
 
 	public KeyboardLayout() {
 		lines = new ArrayList<Line>();
@@ -37,7 +58,8 @@ public class KeyboardLayout {
 		lines.add(line);
 	}
 
-	public void prepareDistances() {
+	public void prepare() {
+
 		double absolutOfsset = 0;
 		int height = 0;
 		for (Line line : lines) {
@@ -51,6 +73,19 @@ public class KeyboardLayout {
 			}
 
 			height++;
+		}
+
+	}
+
+	/**
+	 * Monta a tabela de distancia de uma vez apenas
+	 */
+	public void prepareDistances() {
+		tableMatrix = new double[26][26];
+		for (int i = 0; i < tableMatrix.length; i++) {
+			for (int j = 0; j < tableMatrix.length; j++) {
+
+			}
 		}
 
 	}
@@ -76,8 +111,7 @@ public class KeyboardLayout {
 	}
 
 	public double getMaximumDistance() {
-		// TODO
-		return 0;
+		return 1;
 	}
 
 	@Override
@@ -87,6 +121,10 @@ public class KeyboardLayout {
 			string += line + "\n";
 		}
 		return string;
+	}
+
+	public double getRelativeDistance(char firstChar, char secondChar) {
+		return getNominalDistance(firstChar, secondChar) / getMaximumDistance();
 	}
 
 	private double dist(double width, double height) {

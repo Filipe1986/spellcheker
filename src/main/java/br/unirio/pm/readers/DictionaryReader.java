@@ -13,9 +13,29 @@ import br.unirio.pm.distancia.IDistanceCalculator;
 
 public class DictionaryReader {
 
-	public BurkhardKellerTree loadFromFile(String string, IDistanceCalculator calculator) {
-		// TODO Auto-generated method stub
-		return null;
+	public BurkhardKellerTree loadFromFile(String fileName, IDistanceCalculator calculator) {
+
+		ArrayList<String> words = new ArrayList<String>();
+
+		try {
+			ZipFile zf = new ZipFile(fileName);
+
+			ZipEntry entry = zf.entries().nextElement();
+
+			InputStream inputStream = zf.getInputStream(entry);
+			InputStreamReader isr = new InputStreamReader(inputStream);
+			BufferedReader buffer = new BufferedReader(isr);
+			String line;
+			while ((line = buffer.readLine()) != null) {
+				words.add(line);
+			}
+			zf.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		BurkhardKellerTree bkTree = new BurkhardKellerTree();
+		return bkTree;
+
 	}
 
 	public static ArrayList<String> fileReader(String fileName) {

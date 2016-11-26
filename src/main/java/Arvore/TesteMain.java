@@ -5,35 +5,43 @@ import java.util.List;
 
 import br.unirio.pm.Tree.BurkhardKellerTree;
 import br.unirio.pm.distancia.DamerauLevenshteinCalculator;
+import br.unirio.pm.keyboard.KeyboardLayoutNeutro;
 import br.unirio.pm.readers.DictionaryReader;
 
 public class TesteMain {
 
 	public static void main(String[] args) {
 		leve();
-		dadadadada();
+		/* dadadadada(); */
+		/* maisUmTest(); */
+
+	}
+
+	private static void maisUmTest() {
+		KeyboardLayoutNeutro a = new KeyboardLayoutNeutro();
 
 	}
 
 	private static void dadadadada() {
 		System.out.println("Ddadada");
-		DamerauLevenshteinCalculator d = new DamerauLevenshteinCalculator();
+		KeyboardLayoutNeutro layout = new KeyboardLayoutNeutro();
+		DamerauLevenshteinCalculator d = new DamerauLevenshteinCalculator(layout);
 
-		int i = d.distance("a", "b");
-		System.out.println(i);
+		double i = d.distance("a", "b");
+		System.out.println("esperado = 1" + " encontrado -> " + i);
 		i = d.distance("ab", "ba");
-		System.out.println(i);
+		System.out.println("esperado = 1" + " encontrado -> " + i);
 		i = d.distance("cook", "cook");
-		System.out.println(i);
+		System.out.println("esperado = 0" + " encontrado -> " + i);
 		i = d.distance("coko", "cook");
-		System.out.println(i);
+		System.out.println("esperado = 1" + " encontrado -> " + i);
 		i = d.distance("coco", "coco");
-		System.out.println(i);
+		System.out.println("esperado = 0" + " encontrado -> " + i);
 		i = d.distance("filipe", "ifilep");
-		System.out.println(i);
+		System.out.println("esperado = 3" + " encontrado -> " + i);
 
 		i = d.distance("lal", "all");
-		System.out.println(i);
+		System.out.println("esperado = 1" + " encontrado -> " + i);
 
 	}
 
@@ -44,7 +52,8 @@ public class TesteMain {
 
 		String palavra = "Filipe";
 
-		List<String> results = tree.search(palavra, 1);
+		KeyboardLayoutNeutro layout = new KeyboardLayoutNeutro();
+		List<String> results = tree.search(palavra, 1, layout);
 		System.out.println(results);
 	}
 }

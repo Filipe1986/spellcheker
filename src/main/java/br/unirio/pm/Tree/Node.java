@@ -37,7 +37,7 @@ public class Node {
 
 		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(new KeyboardLayout());
 
-		int distanciaLevenshtein = levenshteinCalculator.distance(palavra, no);
+		int distanciaLevenshtein = (int) levenshteinCalculator.distance(palavra, no);
 		if (distanciaLevenshtein <= distanciaMaxima) {
 			palavrasCompativeis.add(palavra);
 		}
@@ -61,7 +61,7 @@ public class Node {
 		List<String> palavrasCompativeis = new ArrayList<String>();
 		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(layout);
 
-		int distanciaLevenshtein = levenshteinCalculator.distance(palavra, no);
+		int distanciaLevenshtein = (int) levenshteinCalculator.distance(palavra, no);
 		if (distanciaLevenshtein <= distanciaMaxima) {
 			palavrasCompativeis.add(palavra);
 		}

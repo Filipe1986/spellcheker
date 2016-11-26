@@ -37,7 +37,7 @@ public class TestSpellChecker {
 	public void testLevenshteintTecladoNeutro() {
 		KeyboardLayout layout = new KeyboardLayoutNeutro();
 		IDistanceCalculator calculator = new LevenshteinCalculator(layout);
-		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("data/dictionary pt-br.zip", calculator);
+		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary pt-br.zip", calculator);
 
 		BurkhardKellerTreeSearchResult result1 = tree.search("casa", 1, 10);
 		check(result1, 0, "casa", 0.0);

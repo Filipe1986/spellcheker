@@ -2,27 +2,13 @@ package br.unirio.pm.Tree;
 
 import java.util.List;
 
+import br.unirio.pm.distancia.IDistanceCalculator;
 import br.unirio.pm.distancia.LevenshteinCalculator;
 import br.unirio.pm.keyboard.KeyboardLayout;
 
 public class BurkhardKellerTree {
 
 	private Node root;
-
-	/**
-	 * Chama a funcao de busca do nó
-	 */
-	public List<String> search(String str, int distanciaMaximaPermitida) {
-		return root.search(str.toUpperCase(), distanciaMaximaPermitida, new KeyboardLayout());
-	}
-
-	/**
-	 * Devolve a arvore resultado da busca
-	 */
-	public BurkhardKellerTreeSearchResult search(String string, int i, int j) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	/**
 	 * Cria no a partir de string passada e adiciona o no a arvore
@@ -56,9 +42,9 @@ public class BurkhardKellerTree {
 		if (srcNode.equals(novoNo)) {
 			return;
 		}
-		LevenshteinCalculator levenshteinCalculator = new LevenshteinCalculator(new KeyboardLayout());
+		IDistanceCalculator calculator = new LevenshteinCalculator(new KeyboardLayout());
 
-		int distance = levenshteinCalculator.distance(srcNode.getPalavra(), novoNo.getPalavra());
+		int distance = (int) calculator.distance(srcNode.getPalavra(), novoNo.getPalavra());
 
 		Node bkNode = srcNode.filhosNumaDistancia(distance);
 
@@ -70,6 +56,21 @@ public class BurkhardKellerTree {
 		else {
 			add(bkNode, novoNo);
 		}
+	}
+
+	/**
+	 * Chama a funcao de busca do nó
+	 */
+	public List<String> search(String str, int distanciaMaximaPermitida, KeyboardLayout layout) {
+		return root.search(str.toUpperCase(), distanciaMaximaPermitida, layout);
+	}
+
+	/**
+	 * Devolve a arvore resultado da busca
+	 */
+	public BurkhardKellerTreeSearchResult search(String string, int i, int j) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

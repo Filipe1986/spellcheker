@@ -3,16 +3,17 @@ package br.unirio.pm.distancia;
 import br.unirio.pm.keyboard.KeyboardLayout;
 
 public class LevenshteinCalculator implements IDistanceCalculator {
+	KeyboardLayout layout;
 
 	public LevenshteinCalculator(KeyboardLayout layout) {
-		// TODO Auto-generated constructor stub
+		this.layout = layout;
 	}
 
-	public int distance(String s1, String s2) {
+	public double distance(String s1, String s2) {
 
 		CharSequence lhs = s1;
 		CharSequence rhs = s2;
-		int[][] distance = new int[lhs.length() + 1][rhs.length() + 1];
+		double[][] distance = new double[lhs.length() + 1][rhs.length() + 1];
 
 		for (int i = 0; i <= lhs.length(); i++) {
 			distance[i][0] = i;
@@ -25,9 +26,10 @@ public class LevenshteinCalculator implements IDistanceCalculator {
 
 		for (int i = 1; i <= lhs.length(); i++) {
 			for (int j = 1; j <= rhs.length(); j++) {
-				int deletion = distance[i - 1][j] + 1;
-				int insertion = distance[i][j - 1] + 1;
-				int substitution = distance[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0 : 1);
+				double deletion = distance[i - 1][j] + (int) layout.getInsertDeleteDistance();
+				double insertion = distance[i][j - 1] + (int) layout.getInsertDeleteDistance();
+				double substitution = distance[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0
+						: (int) layout.getRelativeDistance(lhs.charAt(i - 1), rhs.charAt(j - 1)));
 
 				distance[i][j] = lowestValue(deletion, insertion, substitution);
 
@@ -36,8 +38,8 @@ public class LevenshteinCalculator implements IDistanceCalculator {
 		return distance[lhs.length()][rhs.length()];
 	}
 
-	private int lowestValue(int deletion, int insertion, int substitution) {
-		int min = (deletion < insertion) ? deletion : insertion;
+	private double lowestValue(double deletion, double insertion, double substitution) {
+		double min = (deletion < insertion) ? deletion : insertion;
 		return (min < substitution) ? min : substitution;
 
 	}
