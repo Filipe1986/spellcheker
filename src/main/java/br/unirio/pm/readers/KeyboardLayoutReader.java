@@ -54,7 +54,7 @@ public class KeyboardLayoutReader {
 		return keylaylist;
 	}
 
-	public static KeyboardLayoutList loadFromFile(String string) {
+	public KeyboardLayoutList loadFromFile(String string) {
 		KeyboardLayoutList keyboardLayoutList = new KeyboardLayoutList();
 		try {
 			File fXmlFile = new File("layouts.xml");

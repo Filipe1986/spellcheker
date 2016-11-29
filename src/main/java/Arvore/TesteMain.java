@@ -77,7 +77,7 @@ public class TesteMain {
 
 	private static void querty() {
 
-		KeyboardLayoutList list = KeyboardLayoutReader.loadFromFile("layouts.xml");
+		KeyboardLayoutList list = new KeyboardLayoutReader().loadFromFile("layouts.xml");
 		KeyboardLayout layout = list.getLayoutByName("QWERTY");
 		System.out.println(layout.getModel());
 		layout.prepareDistances();

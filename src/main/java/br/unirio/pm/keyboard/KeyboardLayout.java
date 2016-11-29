@@ -98,7 +98,7 @@ public class KeyboardLayout {
 	}
 
 	public double getInsertDeleteDistance() {
-		return 0.25;
+		return 0.4;
 	}
 
 	public double getMaximumDistance() {
@@ -116,7 +116,7 @@ public class KeyboardLayout {
 	}
 
 	public double getRelativeDistance(char firstChar, char secondChar) {
-		return getNominalDistance(firstChar, secondChar) / maxDistance;
+		return (100 * getNominalDistance(firstChar, secondChar) / maxDistance);
 	}
 
 }
