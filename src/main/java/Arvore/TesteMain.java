@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.unirio.pm.Tree.BurkhardKellerTree;
 import br.unirio.pm.distancia.DamerauLevenshteinCalculator;
-import br.unirio.pm.distancia.IDistanceCalculator;
+import br.unirio.pm.distancia.DistanceCalculator;
 import br.unirio.pm.distancia.LevenshteinCalculator;
 import br.unirio.pm.keyboard.KeyboardLayout;
 import br.unirio.pm.keyboard.KeyboardLayoutList;
@@ -17,11 +17,11 @@ public class TesteMain {
 
 	public static void main(String[] args) {
 
-		/*
-		 * leve(); dadadadada(); novo();
-		 */
-		keyboard();
-
+		/* leve(); */
+		/* dadadadada(); */
+		/* novo(); */
+		/* keyboard(); */
+		querty();
 	}
 
 	private static void keyboard() {
@@ -59,15 +59,34 @@ public class TesteMain {
 
 		KeyboardLayout layout = new KeyboardLayoutNeutro();
 		layout.prepareDistances();
-		IDistanceCalculator calculator = new LevenshteinCalculator(layout);
+		DistanceCalculator calculator = new LevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new BurkhardKellerTree(calculator);
 
 		ArrayList<String> palavras = DictionaryReader.fileReader("dictionary_pt-br.zip");
 		tree.addNodeList(palavras);
 
-		String palavra = "File";
+		String palavra = "cervega";
 		System.out.println(palavra);
-		List<String> results = tree.search(palavra, 1, calculator);
+		List<String> results = tree.search(palavra, 2, calculator);
+		System.out.println(results);
+		System.out.println("Mel");
+		results = tree.search("mel", 0, calculator);
+		System.out.println(results);
+	}
+
+	private static void querty() {
+
+		KeyboardLayout layout = KeyboardLayoutReader.reloadFromFile();
+		layout.prepareDistances();
+		DistanceCalculator calculator = new LevenshteinCalculator(layout);
+		BurkhardKellerTree tree = new BurkhardKellerTree(calculator);
+
+		ArrayList<String> palavras = DictionaryReader.fileReader("dictionary_pt-br.zip");
+		tree.addNodeList(palavras);
+
+		String palavra = "cervega";
+		System.out.println(palavra);
+		List<String> results = tree.search(palavra, 2, calculator);
 		System.out.println(results);
 		System.out.println("Mel");
 		results = tree.search("mel", 0, calculator);
@@ -78,7 +97,7 @@ public class TesteMain {
 
 		KeyboardLayout layout = new KeyboardLayoutNeutro();
 		layout.prepareDistances();
-		IDistanceCalculator calculator = new LevenshteinCalculator(layout);
+		DistanceCalculator calculator = new LevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary_pt-br.zip", calculator);
 
 		List<String> palavras = tree.search("Casa", 1, calculator);

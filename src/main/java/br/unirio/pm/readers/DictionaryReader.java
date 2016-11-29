@@ -9,11 +9,11 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import br.unirio.pm.Tree.BurkhardKellerTree;
-import br.unirio.pm.distancia.IDistanceCalculator;
+import br.unirio.pm.distancia.DistanceCalculator;
 
 public class DictionaryReader {
 
-	public BurkhardKellerTree loadFromFile(String fileName, IDistanceCalculator calculator) {
+	public BurkhardKellerTree loadFromFile(String fileName, DistanceCalculator calculator) {
 
 		BurkhardKellerTree bkTree = new BurkhardKellerTree(calculator);
 

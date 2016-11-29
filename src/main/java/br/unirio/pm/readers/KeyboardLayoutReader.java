@@ -17,6 +17,7 @@ import br.unirio.pm.keyboard.Line;
 public class KeyboardLayoutReader {
 
 	public static KeyboardLayoutList reloadFromFile() {
+
 		KeyboardLayoutList keylaylist = new KeyboardLayoutList();
 		try {
 			File fXmlFile = new File("layouts.xml");
@@ -54,7 +55,7 @@ public class KeyboardLayoutReader {
 	}
 
 	public KeyboardLayoutList loadFromFile(String string) {
-		KeyboardLayoutList keylaylist = new KeyboardLayoutList();
+		KeyboardLayoutList keyboardLayoutList = new KeyboardLayoutList();
 		try {
 			File fXmlFile = new File("layouts.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -83,12 +84,12 @@ public class KeyboardLayoutReader {
 						}
 
 					}
-					keylaylist.add(kl);
+					keyboardLayoutList.add(kl);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return keylaylist;
+		return keyboardLayoutList;
 	}
 }

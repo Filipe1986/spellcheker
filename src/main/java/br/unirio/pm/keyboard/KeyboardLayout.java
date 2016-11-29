@@ -2,7 +2,7 @@ package br.unirio.pm.keyboard;
 
 import java.util.ArrayList;
 
-import br.unirio.pm.distancia.IDistanceCalculator;
+import br.unirio.pm.distancia.DistanceCalculator;
 
 public class KeyboardLayout {
 
@@ -15,7 +15,7 @@ public class KeyboardLayout {
 
 	private OrderedPair[] table;
 
-	private IDistanceCalculator calculator;
+	private DistanceCalculator calculator;
 
 	protected OrderedPair[] getTable() {
 		return table;

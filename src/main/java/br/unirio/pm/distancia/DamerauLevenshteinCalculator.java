@@ -2,7 +2,7 @@ package br.unirio.pm.distancia;
 
 import br.unirio.pm.keyboard.KeyboardLayout;
 
-public class DamerauLevenshteinCalculator implements IDistanceCalculator {
+public class DamerauLevenshteinCalculator extends DistanceCalculator {
 
 	private KeyboardLayout layout;
 

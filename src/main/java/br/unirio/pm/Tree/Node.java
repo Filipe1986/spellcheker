@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.unirio.pm.distancia.IDistanceCalculator;
+import br.unirio.pm.distancia.DistanceCalculator;
 
 public class Node {
 
@@ -30,7 +30,7 @@ public class Node {
 		filhos.put(position, childNode);
 	}
 
-	public List<String> search(String no, int distanciaMaxima, IDistanceCalculator calculator) {
+	public List<String> search(String no, int distanciaMaxima, DistanceCalculator calculator) {
 		List<String> palavrasCompativeis = new ArrayList<String>();
 
 		int distancia = (int) calculator.distance(word, no);

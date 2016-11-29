@@ -2,18 +2,18 @@ package br.unirio.pm.Tree;
 
 import java.util.List;
 
-import br.unirio.pm.distancia.IDistanceCalculator;
+import br.unirio.pm.distancia.DistanceCalculator;
 
 public class BurkhardKellerTree {
 
 	private Node root;
 
-	IDistanceCalculator calculator;
+	DistanceCalculator calculator;
 
 	/**
 	 * Construtor
 	 */
-	public BurkhardKellerTree(IDistanceCalculator calculator) {
+	public BurkhardKellerTree(DistanceCalculator calculator) {
 		this.calculator = calculator;
 	}
 
@@ -66,7 +66,7 @@ public class BurkhardKellerTree {
 	/**
 	 * Funcao para busca de nó com uma distancia maxima
 	 */
-	public List<String> search(String word, int distanciaMaximaPermitida, IDistanceCalculator calculator1) {
+	public List<String> search(String word, int distanciaMaximaPermitida, DistanceCalculator calculator1) {
 		return root.search(word.toUpperCase(), distanciaMaximaPermitida, calculator1);
 	}
 
