@@ -3,10 +3,16 @@ package br.unirio.pm.keyboard;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe com arraylist de teclados
+ */
 public class KeyboardLayoutList {
 
 	private List<KeyboardLayout> layouts;
 
+	/**
+	 * Adiciona Keyboard individualmente
+	 */
 	public void add(KeyboardLayout keyboardLayout) {
 		if (layouts == null) {
 			layouts = new ArrayList<KeyboardLayout>();
@@ -14,6 +20,9 @@ public class KeyboardLayoutList {
 		layouts.add(keyboardLayout);
 	}
 
+	/**
+	 * Retorna um KeyboardLayout de acordo com o nome de entrada
+	 */
 	public KeyboardLayout getLayoutByName(String nomeLayout) {
 		nomeLayout = nomeLayout.toUpperCase();
 		KeyboardLayout layout = null;

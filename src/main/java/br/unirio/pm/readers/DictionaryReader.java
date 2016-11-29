@@ -13,6 +13,10 @@ import br.unirio.pm.distancia.DistanceCalculator;
 
 public class DictionaryReader {
 
+	/**
+	 * Lê um arquivo de palavras e adiciona uma BurkhardKellerTree de acordo com
+	 * o algoritmo de distancia
+	 */
 	public BurkhardKellerTree loadFromFile(String fileName, DistanceCalculator calculator) {
 
 		BurkhardKellerTree bkTree = new BurkhardKellerTree(calculator);
@@ -41,6 +45,9 @@ public class DictionaryReader {
 
 	}
 
+	/**
+	 * Lê um arquivo de palavras e adiciona a um arrayList
+	 */
 	public static ArrayList<String> fileReader(String fileName) {
 
 		ArrayList<String> words = new ArrayList<String>();

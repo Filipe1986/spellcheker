@@ -35,11 +35,11 @@ public class Node implements Comparable<Node> {
 		children.put(position, childNode);
 	}
 
-	public List<String> search(String no, int maxDistance, DistanceCalculator calculator) {
+	public List<String> search(String node, int maxDistance, DistanceCalculator calculator) {
 
 		List<String> compatibleWord = new ArrayList<String>();
 
-		this.distance = (int) Math.round(calculator.distance(word, no));
+		this.distance = (int) Math.round(calculator.distance(word, node));
 		if (distance <= maxDistance) {
 			compatibleWord.add(word);
 		}
@@ -53,7 +53,7 @@ public class Node implements Comparable<Node> {
 			Node child = children.get(i);
 
 			if (child != null) {
-				compatibleWord.addAll(child.search(no, maxDistance, calculator));
+				compatibleWord.addAll(child.search(node, maxDistance, calculator));
 			}
 		}
 		return compatibleWord;

@@ -1,20 +1,25 @@
 package br.unirio.pm.keyboard;
 
+/**
+ * KeyboardLayout com valores que não levam em consideração o teclado
+ */
 public class KeyboardLayoutNeutro extends KeyboardLayout {
 
+	private static final double DEFAULT_RETURN_VALUE = 1.0;
+
 	public String getModel() {
-		return "neutro";
+		return "NEUTRO";
 	}
 
 	public double getInsertDeleteDistance() {
-		return 1;
+		return DEFAULT_RETURN_VALUE;
 	}
 
 	public double getNominalDistance(char firstChar, char secondChar) {
-		return 1;
+		return DEFAULT_RETURN_VALUE;
 	}
 
 	public double getRelativeDistance(char c1, char c2) {
-		return 1.0;
+		return DEFAULT_RETURN_VALUE;
 	}
 }

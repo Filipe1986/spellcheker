@@ -1,16 +1,19 @@
 package br.unirio.pm.keyboard;
 
+/**
+ * Classe para montar uma linha do teclado
+ */
 public class Line {
 
-	private String conteudo;
+	private String letters;
 	private double offset;
 
-	public String getContent() {
-		return conteudo;
+	public String getLetters() {
+		return letters;
 	}
 
-	public void setLetters(String content) {
-		this.conteudo = content;
+	public void setLetters(String letters) {
+		this.letters = letters;
 	}
 
 	public double getOffset() {
@@ -22,22 +25,20 @@ public class Line {
 	}
 
 	public char charAt(int i) {
-		return conteudo.charAt(i);
-
+		return letters.charAt(i);
 	}
 
 	public int getTamanho() {
-
-		return conteudo.length();
+		return letters.length();
 	}
 
 	public int getLength() {
-		return conteudo.length();
+		return letters.length();
 	}
 
 	@Override
 	public String toString() {
-		String string = conteudo + " " + offset;
+		String string = letters + " " + offset;
 		return string;
 	}
 

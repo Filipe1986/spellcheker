@@ -18,8 +18,9 @@ public class KeyboardLayoutReader {
 
 	public KeyboardLayoutList reloadFromFile() {
 
-		KeyboardLayoutList keylaylist = new KeyboardLayoutList();
+		KeyboardLayoutList keyboardLayoutList = new KeyboardLayoutList();
 		try {
+
 			File fXmlFile = new File("layouts.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -44,20 +45,20 @@ public class KeyboardLayoutReader {
 							Double cont = Double.parseDouble(offset);
 							line.setOffset(cont);
 						}
-						keylaylist.add(kl);
+						keyboardLayoutList.add(kl);
 					}
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return keylaylist;
+		return keyboardLayoutList;
 	}
 
-	public KeyboardLayoutList loadFromFile(String string) {
+	public KeyboardLayoutList loadFromFile(String filePath) {
 		KeyboardLayoutList keyboardLayoutList = new KeyboardLayoutList();
 		try {
-			File fXmlFile = new File("layouts.xml");
+			File fXmlFile = new File(filePath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);

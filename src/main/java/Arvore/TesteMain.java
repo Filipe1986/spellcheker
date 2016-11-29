@@ -21,8 +21,8 @@ public class TesteMain {
 		/* dadadadada(); */
 		/* novo(); */
 		/* keyboard(); */
-		querty();
-		/* testeDistancia(); */
+		/* querty(); */
+		testeDistancia();
 	}
 
 	private static void testeDistancia() {

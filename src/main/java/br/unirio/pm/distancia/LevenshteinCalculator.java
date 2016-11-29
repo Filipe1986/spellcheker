@@ -9,6 +9,9 @@ public class LevenshteinCalculator extends DistanceCalculator {
 		this.layout = layout;
 	}
 
+	/**
+	 * Implementação do calculo da distancia com Levenshtein
+	 */
 	public double distance(String s1, String s2) {
 
 		CharSequence lhs = s1;
@@ -42,6 +45,9 @@ public class LevenshteinCalculator extends DistanceCalculator {
 		return distance[lhs.length()][rhs.length()];
 	}
 
+	/**
+	 * Calcula o menor valor entre deleção, inserção e substituição
+	 */
 	private double lowestValue(double deletion, double insertion, double substitution) {
 		double min = (deletion < insertion) ? deletion : insertion;
 		return (min < substitution) ? min : substitution;
