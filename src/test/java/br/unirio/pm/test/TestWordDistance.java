@@ -77,27 +77,29 @@ public class TestWordDistance {
 		KeyboardLayout layout = layouts.getLayoutByName("QWERTY");
 		layout.prepareDistances();
 		DistanceCalculator calculator = new LevenshteinCalculator(layout);
-		// BurkhardKellerTree tree = new
-		// DictionaryReader().loadFromFile("dictionary_pt-br.zip", calculator);
 
 		assertEquals(0.0, calculator.distance("casa", "casa"), 0.01);
 		assertEquals(0.11, calculator.distance("casa", "cada"), 0.01);
 		assertEquals(0.20, calculator.distance("casa", "caca"), 0.01);
+		assertEquals(0.20, calculator.distance("casa", "cara"), 0.01);
+		assertEquals(0.23, calculator.distance("casa", "fada"), 0.01);
+		assertEquals(0.23, calculator.distance("casa", "vaza"), 0.01);
+		// assertEquals(0.25, calculator.distance("casa", "asa"), 0.01);
+		assertEquals(0.25, calculator.distance("casa", "cas"), 0.01);
+		assertEquals(0.25, calculator.distance("casa", "casal"), 0.01);
+		assertEquals(0.25, calculator.distance("casa", "casar"), 0.01);
 
-		assertEquals(1.0, calculator.distance("casa", "cara"), 0.01);
-		assertEquals(1.0, calculator.distance("casa", "fada"), 0.01);
-		assertEquals(1.0, calculator.distance("casa", "vaza"), 0.01);
-		assertEquals(1.0, calculator.distance("casa", "asa"), 0.01);
-		assertEquals(1.0, calculator.distance("casa", "cas"), 0.01);
-		assertEquals(1.0, calculator.distance("casa", "casal"), 0.01);
-		assertEquals(1.0, calculator.distance("casa", "cacar"), 0.01);
-		/*
-		 * check(result, 0, "casa", 0.0); check(result, 1, "cada", 0.11);
-		 * check(result, 2, "caca", 0.20); check(result, 3, "cara", 0.20);
-		 * check(result, 4, "fada", 0.23); check(result, 5, "vaza", 0.23);
-		 * check(result, 6, "asa", 0.25); check(result, 7, "cas", 0.25);
-		 * check(result, 8, "casal", 0.25); check(result, 9, "casar", 0.25);
-		 */
+		assertEquals(0.22, calculator.distance("cervega", "cerveja"), 0.01);
+		assertEquals(0.47, calculator.distance("cervega", "cereja"), 0.01);
+		assertEquals(0.48, calculator.distance("cervega", "xereta"), 0.01);
+		assertEquals(0.54, calculator.distance("cervega", "verbete"), 0.01);
+		assertEquals(0.57, calculator.distance("cervega", "careta"), 0.01);
+		assertEquals(0.57, calculator.distance("cervega", "ferver"), 0.01);
+		assertEquals(0.57, calculator.distance("cervega", "carreta"), 0.01);
+		assertEquals(0.58, calculator.distance("cervega", "vereda"), 0.01);
+
+		assertEquals(0.59, calculator.distance("cervega", "refrega"), 0.01);
+		assertEquals(0.61, calculator.distance("cervega", "cerca"), 0.01);
 
 	}
 

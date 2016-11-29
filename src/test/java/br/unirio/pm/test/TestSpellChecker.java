@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.unirio.pm.Tree.BurkhardKellerTree;
 import br.unirio.pm.Tree.BurkhardKellerSearchResult;
+import br.unirio.pm.Tree.BurkhardKellerTree;
 import br.unirio.pm.distancia.DamerauLevenshteinCalculator;
 import br.unirio.pm.distancia.DistanceCalculator;
 import br.unirio.pm.distancia.LevenshteinCalculator;
@@ -27,10 +27,6 @@ public class TestSpellChecker {
 	@BeforeClass
 	public static void setup() {
 		layouts = new KeyboardLayoutReader().loadFromFile("layouts.xml");
-
-		/*
-		 * for (KeyboardLayout layout : layouts) layout.prepareDistances();
-		 */
 
 	}
 
