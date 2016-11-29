@@ -49,10 +49,8 @@ public class DamerauLevenshteinCalculator extends DistanceCalculator {
 				} else {
 					distance[i][j] = lowestValue(deletion, insertion, substitution);
 				}
-
 			}
 		}
-
 		return distance[lhs.length()][rhs.length()];
 	}
 

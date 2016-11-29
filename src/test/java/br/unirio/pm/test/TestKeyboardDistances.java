@@ -19,7 +19,6 @@ public class TestKeyboardDistances {
 
 	@BeforeClass
 	public static void setup() {
-
 		layouts = new KeyboardLayoutReader().loadFromFile("layouts.xml");
 	}
 

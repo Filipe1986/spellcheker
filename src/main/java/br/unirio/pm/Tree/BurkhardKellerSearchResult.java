@@ -1,5 +1,6 @@
 package br.unirio.pm.Tree;
 
+import java.util.Iterator;
 import java.util.TreeSet;
 
 /**
@@ -20,14 +21,28 @@ public class BurkhardKellerSearchResult {
 		nodes = new TreeSet<Node>();
 	}
 
-	public String getWord(int position) {
-		return "";
+	public Node getWord(int position) {
+		int i = 0;
+		Node node = null;
+		for (Iterator iterator = nodes.iterator(); iterator.hasNext();) {
+			i++;
+			if (position == i) {
+				node = nodes.iterator().next();
+			}
+		}
+		return node;
 	}
 
+	/**
+	 * 
+	 */
 	public double getDistance(int position) {
 		return (Double) null;
 	}
 
+	/**
+	 * Adiciona no
+	 */
 	public void addNode(Node node) {
 		if (numberOfNodes < lenght) {
 
@@ -38,6 +53,9 @@ public class BurkhardKellerSearchResult {
 		}
 	}
 
+	/**
+	 * Adiciona no
+	 */
 	public void add(String word) {
 		Node node = new Node(word);
 		addNode(node);

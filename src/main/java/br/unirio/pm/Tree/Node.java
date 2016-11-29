@@ -63,6 +63,9 @@ public class Node implements Comparable<Node> {
 
 	}
 
+	/**
+	 * Incompleto
+	 */
 	public BurkhardKellerSearchResult search2(String no, int maxDistance, DistanceCalculator calculator) {
 
 		BurkhardKellerSearchResult compatibleWord = new BurkhardKellerSearchResult(maxDistance);
