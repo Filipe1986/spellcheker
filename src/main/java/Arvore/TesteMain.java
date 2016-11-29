@@ -33,7 +33,7 @@ public class TesteMain {
 	}
 
 	private static void dadadadada() {
-		System.out.println("Ddadada");
+		System.out.println("Dadadada");
 		KeyboardLayoutNeutro layout = new KeyboardLayoutNeutro();
 		DamerauLevenshteinCalculator d = new DamerauLevenshteinCalculator(layout);
 

@@ -2,8 +2,6 @@ package br.unirio.pm.keyboard;
 
 import java.util.ArrayList;
 
-import br.unirio.pm.distancia.DistanceCalculator;
-
 public class KeyboardLayout {
 
 	private final int DEFAULT_NUMBER_LETTERS = 26;
@@ -15,8 +13,6 @@ public class KeyboardLayout {
 	private double[][] tableMatrix;
 
 	private OrderedPair[] table;
-
-	private DistanceCalculator calculator;
 
 	protected OrderedPair[] getTable() {
 		return table;
