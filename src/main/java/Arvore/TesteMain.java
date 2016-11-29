@@ -31,7 +31,8 @@ public class TesteMain {
 		layout.prepareDistances();
 
 		DistanceCalculator calculator = new LevenshteinCalculator(layout);
-		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary_pt-br.zip", calculator);
+		// BurkhardKellerTree tree = new
+		// DictionaryReader().loadFromFile("dictionary_pt-br.zip", calculator);
 
 		double a = calculator.distance("casa", "casa");
 		System.out.println(a);

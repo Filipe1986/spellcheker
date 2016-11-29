@@ -28,7 +28,7 @@ public class TestWordDistance {
 		KeyboardLayout layout = new KeyboardLayoutNeutro();
 		layout.prepareDistances();
 
-		DistanceCalculator calculator = new LevenshteinCalculator(layout);
+		DistanceCalculator calculator = new DamerauLevenshteinCalculator(layout);
 
 		assertEquals(0, calculator.distance("casa", "casa"), 0.01);
 		assertEquals(1.0, calculator.distance("casa", "asa"), 0.01);
@@ -52,7 +52,7 @@ public class TestWordDistance {
 	public void testDemerauTecladoNeutro() {
 		KeyboardLayout layout = new KeyboardLayoutNeutro();
 		layout.prepareDistances();
-		DistanceCalculator calculator = new DamerauLevenshteinCalculator(layout);
+		DistanceCalculator calculator = new LevenshteinCalculator(layout);
 
 		assertEquals(0.0, calculator.distance("casa", "casa"), 0.01);
 		assertEquals(1.0, calculator.distance("casa", "asa"), 0.01);
@@ -65,33 +65,40 @@ public class TestWordDistance {
 		assertEquals(1.0, calculator.distance("casa", "casta"), 0.01);
 		assertEquals(1.0, calculator.distance("casa", "caca"), 0.01);
 
-		assertEquals(0.1, calculator.distance("cervega", "cerveja"), 0.01);
+		assertEquals(1.0, calculator.distance("cervega", "cerveja"), 0.01);
+		assertEquals(2.0, calculator.distance("cervega", "cereja"), 0.01);
+		assertEquals(2.0, calculator.distance("cervega", "cereja"), 0.01);
+		assertEquals(3.0, calculator.distance("cervega", "xereta"), 0.01);
 
-		assertEquals(0.47, calculator.distance("cervega", "cereja"), 0.01);
-		assertEquals(0.47, calculator.distance("cervega", "cereja"), 0.01);
-		assertEquals(0.48, calculator.distance("cervega", "xereta"), 0.01);
+	}
 
-		assertEquals(0.54, calculator.distance("cervega", "verbete"), 0.01);
+	@Test
+	public void testLevenshteinTecladoQwerty() {
+		KeyboardLayout layout = layouts.getLayoutByName("QWERTY");
+		layout.prepareDistances();
+		DistanceCalculator calculator = new LevenshteinCalculator(layout);
+		// BurkhardKellerTree tree = new
+		// DictionaryReader().loadFromFile("dictionary_pt-br.zip", calculator);
+
+		assertEquals(0.0, calculator.distance("casa", "casa"), 0.01);
+		assertEquals(0.11, calculator.distance("casa", "cada"), 0.01);
+		assertEquals(0.20, calculator.distance("casa", "caca"), 0.01);
+
+		assertEquals(1.0, calculator.distance("casa", "cara"), 0.01);
+		assertEquals(1.0, calculator.distance("casa", "fada"), 0.01);
+		assertEquals(1.0, calculator.distance("casa", "vaza"), 0.01);
+		assertEquals(1.0, calculator.distance("casa", "asa"), 0.01);
+		assertEquals(1.0, calculator.distance("casa", "cas"), 0.01);
+		assertEquals(1.0, calculator.distance("casa", "casal"), 0.01);
+		assertEquals(1.0, calculator.distance("casa", "cacar"), 0.01);
 		/*
-		 * check(result2, 4, "careta", 0.57); assertEquals(0.47,
-		 * calculator.distance("cervega", "cereja"), 0.01); check(result2, 5,
-		 * "ferver", 0.57); assertEquals(0.47, calculator.distance("cervega",
-		 * "cereja"), 0.01); check(result2, 6, "carreta", 0.57);
-		 * assertEquals(0.47, calculator.distance("cervega", "cereja"), 0.01);
-		 * check(result2, 7, "vereda", 0.58); assertEquals(0.47,
-		 * calculator.distance("cervega", "cereja"), 0.01); check(result2, 8,
-		 * "refrega", 0.59); assertEquals(0.47, calculator.distance("cervega",
-		 * "cereja"), 0.01); check(result2, 9, "cerca", 0.61);
+		 * check(result, 0, "casa", 0.0); check(result, 1, "cada", 0.11);
+		 * check(result, 2, "caca", 0.20); check(result, 3, "cara", 0.20);
+		 * check(result, 4, "fada", 0.23); check(result, 5, "vaza", 0.23);
+		 * check(result, 6, "asa", 0.25); check(result, 7, "cas", 0.25);
+		 * check(result, 8, "casal", 0.25); check(result, 9, "casar", 0.25);
 		 */
 
-		/*
-		 * BurkhardKellerSearchResult result3 = tree.search("aviea", 2, 10);
-		 * check(result3, 0, "aveia", 1.0); check(result3, 1, "aia", 2.0);
-		 * check(result3, 2, "ave", 2.0); check(result3, 3, "via", 2.0);
-		 * check(result3, 4, "avioes", 2.0); check(result3, 5, "avisar", 2.0);
-		 * check(result3, 6, "avivar", 2.0); check(result3, 7, "alinea", 2.0);
-		 * check(result3, 8, "avidez", 2.0); check(result3, 9, "ravina", 2.0);
-		 */
 	}
 
 }

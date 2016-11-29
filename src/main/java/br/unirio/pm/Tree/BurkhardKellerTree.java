@@ -12,9 +12,6 @@ public class BurkhardKellerTree {
 
 	private BurkhardKellerSearchResult result;
 
-	/**
-	 * Construtor
-	 */
 	public BurkhardKellerTree(DistanceCalculator calculator) {
 		this.calculator = calculator;
 	}
@@ -44,7 +41,7 @@ public class BurkhardKellerTree {
 	}
 
 	/**
-	 * Adiciona nó na árvore
+	 * Adiciona nó na árvore de acordo com a distancia do DistanceCalculator
 	 */
 	private void add(Node srcNode, Node newNode) {
 		if (srcNode.equals(newNode)) {
@@ -66,7 +63,7 @@ public class BurkhardKellerTree {
 	}
 
 	/**
-	 * Funcao para busca de nó com uma distancia maxima
+	 * Funcao para busca de nó com uma distancia máxima
 	 */
 	public List<String> search(String word, int distanciaMaximaPermitida, DistanceCalculator calculator) {
 		return root.search(word.toUpperCase(), distanciaMaximaPermitida, calculator);

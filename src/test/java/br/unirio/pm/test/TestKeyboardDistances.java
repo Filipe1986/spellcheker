@@ -27,6 +27,7 @@ public class TestKeyboardDistances {
 	public void testQwerty() {
 		KeyboardLayout layout = layouts.getLayoutByName("QWERTY");
 		layout.prepareDistances();
+		assertEquals(dist(9.0, 0), layout.getMaximumDistance(), 0.001);
 		assertEquals(0.0, layout.getNominalDistance('q', 'q'), 0.001);
 
 		assertEquals(1.0, layout.getNominalDistance('q', 'w'), 0.001);
