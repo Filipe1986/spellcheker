@@ -27,9 +27,10 @@ public class DictionaryReader {
 			BufferedReader buffer = new BufferedReader(isr);
 			String line;
 			while ((line = buffer.readLine()) != null) {
-				line.replaceAll("'", "");
-				line.replaceAll("-", "");
-				line.replaceAll(".", "");
+				line = line.replace("'", "");
+				line = line.replace("-", "");
+				line = line.replace(".", "");
+
 				bkTree.addNode(line);
 
 			}
@@ -55,9 +56,10 @@ public class DictionaryReader {
 			BufferedReader buffer = new BufferedReader(isr);
 			String line;
 			while ((line = buffer.readLine()) != null) {
-				line.replaceAll("'", "");
-				line.replaceAll("-", "");
-				line.replaceAll(".", "");
+				line = line.replace("'", "");
+				line = line.replace("-", "");
+				line = line.replace(".", "");
+
 				words.add(line);
 			}
 			zf.close();

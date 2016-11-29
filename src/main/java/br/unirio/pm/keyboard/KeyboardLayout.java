@@ -2,8 +2,6 @@ package br.unirio.pm.keyboard;
 
 import java.util.ArrayList;
 
-import br.unirio.pm.distancia.DistanceCalculator;
-
 public class KeyboardLayout {
 
 	private final int DEFAULT_NUMBER_LETTERS = 26;
@@ -12,11 +10,8 @@ public class KeyboardLayout {
 
 	private String model;
 	private ArrayList<Line> lines;
-	private double[][] tableMatrix;
 
 	private OrderedPair[] table;
-
-	private DistanceCalculator calculator;
 
 	protected OrderedPair[] getTable() {
 		return table;
@@ -59,22 +54,6 @@ public class KeyboardLayout {
 		lines.add(line);
 	}
 
-	/**
-	 * Monta neutroa tabela de distancia de uma vez apenas
-	 */
-	public void prepareDistance() {
-
-		tableMatrix = new double[DEFAULT_NUMBER_LETTERS][DEFAULT_NUMBER_LETTERS];
-
-		for (int i = 0; i < tableMatrix.length; i++) {
-			for (int j = 0; j < tableMatrix.length; j++) {
-
-				tableMatrix[i][j] = 1;
-			}
-		}
-
-	}
-
 	public void prepareDistances() {
 
 		double absolutOfsset = 0;
@@ -100,7 +79,6 @@ public class KeyboardLayout {
 		firstChar = Character.toUpperCase(firstChar);
 		secondChar = Character.toUpperCase(secondChar);
 
-		System.out.println("char 1 : " + firstChar + " char 2 " + secondChar);
 		OrderedPair pair1 = table[firstChar - CHAR_TO_POSITION];
 		OrderedPair pair2 = table[secondChar - CHAR_TO_POSITION];
 
@@ -138,8 +116,7 @@ public class KeyboardLayout {
 	}
 
 	public double getRelativeDistance(char firstChar, char secondChar) {
-
-		return 100 * getNominalDistance(firstChar, secondChar) / maxDistance;
+		return getNominalDistance(firstChar, secondChar) / maxDistance;
 	}
 
 }
