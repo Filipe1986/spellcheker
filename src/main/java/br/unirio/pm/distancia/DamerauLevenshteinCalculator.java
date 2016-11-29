@@ -2,6 +2,10 @@ package br.unirio.pm.distancia;
 
 import br.unirio.pm.keyboard.KeyboardLayout;
 
+/**
+ * Calcula a distancia de duas palavras com o algoritmo de Damerou utilizando um
+ * layout
+ */
 public class DamerauLevenshteinCalculator extends DistanceCalculator {
 
 	private KeyboardLayout layout;

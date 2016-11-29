@@ -13,6 +13,9 @@ import br.unirio.pm.keyboard.KeyboardLayoutList;
 import br.unirio.pm.keyboard.KeyboardLayoutNeutro;
 import br.unirio.pm.readers.KeyboardLayoutReader;
 
+/**
+ * Casos de teste de distance entre palavras
+ */
 public class TestWordDistance {
 
 	private static KeyboardLayoutList layouts;
@@ -20,7 +23,6 @@ public class TestWordDistance {
 	@BeforeClass
 	public static void setup() {
 		layouts = new KeyboardLayoutReader().loadFromFile("layouts.xml");
-
 	}
 
 	@Test

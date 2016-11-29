@@ -10,7 +10,7 @@ import br.unirio.pm.keyboard.KeyboardLayoutList;
 import br.unirio.pm.readers.KeyboardLayoutReader;
 
 /**
- * Casos de teste para neutroa distância entre teclas em modelos de teclado
+ * Casos de teste para distância entre teclas em modelos de teclado
  *
  * @author Marcio Barros
  */
