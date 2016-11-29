@@ -16,7 +16,7 @@ import br.unirio.pm.keyboard.Line;
 
 public class KeyboardLayoutReader {
 
-	public static KeyboardLayoutList reloadFromFile() {
+	public KeyboardLayoutList reloadFromFile() {
 
 		KeyboardLayoutList keylaylist = new KeyboardLayoutList();
 		try {
@@ -54,7 +54,7 @@ public class KeyboardLayoutReader {
 		return keylaylist;
 	}
 
-	public static KeyboardLayoutList loadFromFile(String string) {
+	public KeyboardLayoutList loadFromFile(String string) {
 		KeyboardLayoutList keyboardLayoutList = new KeyboardLayoutList();
 		try {
 			File fXmlFile = new File("layouts.xml");

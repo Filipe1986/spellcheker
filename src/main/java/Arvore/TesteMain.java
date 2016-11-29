@@ -71,13 +71,13 @@ public class TesteMain {
 		List<String> results = tree.search(palavra, 2, calculator);
 		System.out.println(results);
 		System.out.println("Mel");
-		results = tree.search("mel", 0, calculator);
+		results = tree.search("mel", 1, calculator);
 		System.out.println(results);
 	}
 
 	private static void querty() {
 
-		KeyboardLayoutList list = KeyboardLayoutReader.loadFromFile("layouts.xml");
+		KeyboardLayoutList list = new KeyboardLayoutReader().loadFromFile("layouts.xml");
 		KeyboardLayout layout = list.getLayoutByName("QWERTY");
 		System.out.println(layout.getModel());
 		layout.prepareDistances();
@@ -90,10 +90,10 @@ public class TesteMain {
 		System.out.println("teclado querty");
 		String palavra = "cervega";
 		System.out.println(palavra);
-		List<String> results = tree.search(palavra, 2, calculator);
+		List<String> results = tree.search(palavra, 1, calculator);
 		System.out.println(results);
 		System.out.println("Mel");
-		results = tree.search("mel", 0, calculator);
+		results = tree.search("mel", 1, calculator);
 		System.out.println(results);
 	}
 

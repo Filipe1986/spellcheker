@@ -13,7 +13,7 @@ import br.unirio.pm.distancia.DistanceCalculator;
 
 public class DictionaryReader {
 
-	public static BurkhardKellerTree loadFromFile(String fileName, DistanceCalculator calculator) {
+	public BurkhardKellerTree loadFromFile(String fileName, DistanceCalculator calculator) {
 
 		BurkhardKellerTree bkTree = new BurkhardKellerTree(calculator);
 
