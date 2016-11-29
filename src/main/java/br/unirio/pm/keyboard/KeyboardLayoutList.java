@@ -19,6 +19,7 @@ public class KeyboardLayoutList {
 	}
 
 	public KeyboardLayout getLayoutByName(String nomeLayout) {
+		nomeLayout.toUpperCase();
 		KeyboardLayout layout = null;
 		for (KeyboardLayout keyboardLayout : layouts) {
 			if (keyboardLayout.getModel().equals(nomeLayout)) {

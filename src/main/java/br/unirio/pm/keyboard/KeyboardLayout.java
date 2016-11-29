@@ -8,6 +8,7 @@ public class KeyboardLayout {
 
 	private final int DEFAULT_NUMBER_LETTERS = 26;
 	private final int CHAR_TO_POSITION = 65;
+	private double maxDistance;
 
 	private String model;
 	private ArrayList<Line> lines;
@@ -89,6 +90,7 @@ public class KeyboardLayout {
 			}
 			height++;
 		}
+		maxDistance = (int) getMaximumDistance();
 	}
 
 	public double getNominalDistance(char firstChar, char secondChar) {
@@ -97,6 +99,8 @@ public class KeyboardLayout {
 		}
 		firstChar = Character.toUpperCase(firstChar);
 		secondChar = Character.toUpperCase(secondChar);
+
+		System.out.println("char 1 : " + firstChar + " char 2 " + secondChar);
 		OrderedPair pair1 = table[firstChar - CHAR_TO_POSITION];
 		OrderedPair pair2 = table[secondChar - CHAR_TO_POSITION];
 
@@ -108,16 +112,19 @@ public class KeyboardLayout {
 	}
 
 	private double dist(double width, double height) {
-
-		return Math.sqrt(width * width + height * height);
+		double distance = Math.sqrt(width * width + height * height);
+		if (maxDistance < distance) {
+			maxDistance = distance;
+		}
+		return distance;
 	}
 
 	public double getInsertDeleteDistance() {
-		return 1;
+		return 0.25;
 	}
 
 	public double getMaximumDistance() {
-		return 1;
+		return maxDistance;
 	}
 
 	@Override
@@ -131,7 +138,8 @@ public class KeyboardLayout {
 	}
 
 	public double getRelativeDistance(char firstChar, char secondChar) {
-		return 1;
+
+		return 100 * getNominalDistance(firstChar, secondChar) / maxDistance;
 	}
 
 }

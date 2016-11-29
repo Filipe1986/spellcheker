@@ -13,7 +13,7 @@ import br.unirio.pm.distancia.DistanceCalculator;
 
 public class DictionaryReader {
 
-	public BurkhardKellerTree loadFromFile(String fileName, DistanceCalculator calculator) {
+	public static BurkhardKellerTree loadFromFile(String fileName, DistanceCalculator calculator) {
 
 		BurkhardKellerTree bkTree = new BurkhardKellerTree(calculator);
 
@@ -55,6 +55,9 @@ public class DictionaryReader {
 			BufferedReader buffer = new BufferedReader(isr);
 			String line;
 			while ((line = buffer.readLine()) != null) {
+				line.replaceAll("'", "");
+				line.replaceAll("-", "");
+				line.replaceAll(".", "");
 				words.add(line);
 			}
 			zf.close();

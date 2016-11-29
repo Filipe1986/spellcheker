@@ -17,7 +17,7 @@ public class TesteMain {
 
 	public static void main(String[] args) {
 
-		/* leve(); */
+		leve();
 		/* dadadadada(); */
 		/* novo(); */
 		/* keyboard(); */
@@ -65,6 +65,7 @@ public class TesteMain {
 		ArrayList<String> palavras = DictionaryReader.fileReader("dictionary_pt-br.zip");
 		tree.addNodeList(palavras);
 
+		System.out.println("teclado neutro");
 		String palavra = "cervega";
 		System.out.println(palavra);
 		List<String> results = tree.search(palavra, 2, calculator);
@@ -76,7 +77,9 @@ public class TesteMain {
 
 	private static void querty() {
 
-		KeyboardLayout layout = KeyboardLayoutReader.reloadFromFile();
+		KeyboardLayoutList list = KeyboardLayoutReader.loadFromFile("layouts.xml");
+		KeyboardLayout layout = list.getLayoutByName("QWERTY");
+		System.out.println(layout.getModel());
 		layout.prepareDistances();
 		DistanceCalculator calculator = new LevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new BurkhardKellerTree(calculator);
@@ -84,6 +87,7 @@ public class TesteMain {
 		ArrayList<String> palavras = DictionaryReader.fileReader("dictionary_pt-br.zip");
 		tree.addNodeList(palavras);
 
+		System.out.println("teclado querty");
 		String palavra = "cervega";
 		System.out.println(palavra);
 		List<String> results = tree.search(palavra, 2, calculator);

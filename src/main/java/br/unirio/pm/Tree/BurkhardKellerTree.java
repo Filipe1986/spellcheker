@@ -66,8 +66,8 @@ public class BurkhardKellerTree {
 	/**
 	 * Funcao para busca de nó com uma distancia maxima
 	 */
-	public List<String> search(String word, int distanciaMaximaPermitida, DistanceCalculator calculator1) {
-		return root.search(word.toUpperCase(), distanciaMaximaPermitida, calculator1);
+	public List<String> search(String word, int distanciaMaximaPermitida, DistanceCalculator calculator) {
+		return root.search(word.toUpperCase(), distanciaMaximaPermitida, calculator);
 	}
 
 	/**
