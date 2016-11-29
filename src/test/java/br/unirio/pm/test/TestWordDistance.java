@@ -24,7 +24,7 @@ public class TestWordDistance {
 	}
 
 	@Test
-	public void testLevenshteintTecladoNeutro() {
+	public void testDemerauTecladoNeutro() {
 		KeyboardLayout layout = new KeyboardLayoutNeutro();
 		layout.prepareDistances();
 
@@ -49,7 +49,8 @@ public class TestWordDistance {
 	}
 
 	@Test
-	public void testDemerauTecladoNeutro() {
+	public void testLevenshteintTecladoNeutro() {
+
 		KeyboardLayout layout = new KeyboardLayoutNeutro();
 		layout.prepareDistances();
 		DistanceCalculator calculator = new LevenshteinCalculator(layout);
