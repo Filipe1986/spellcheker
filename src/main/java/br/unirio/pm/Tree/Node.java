@@ -7,49 +7,85 @@ import java.util.Map;
 
 import br.unirio.pm.distancia.DistanceCalculator;
 
-public class Node {
+public class Node implements Comparable<Node> {
 
 	private final String word;
-	private final Map<Integer, Node> filhos = new HashMap<Integer, Node>();
+	private final Map<Integer, Node> children = new HashMap<Integer, Node>();
+	private int distance;
 
 	public Node(String palavra) {
 		this.word = palavra;
 	}
 
+	public int getDistance() {
+		return distance;
+	}
+
 	/**
-	 * Pega o filho na posição distancia no hashMap
+	 * Pega o filho na posição distance no hashMap
 	 */
 	public Node filhosNumaDistancia(int distancia) {
-		return filhos.get(distancia);
+		return children.get(distancia);
 	}
 
 	/**
 	 * Método usado pela árvore para adicionar o nó na posição do hash
 	 */
 	public void addChildNode(int position, Node childNode) {
-		filhos.put(position, childNode);
+		children.put(position, childNode);
 	}
 
-	public List<String> search(String no, int distanciaMaxima, DistanceCalculator calculator) {
-		List<String> palavrasCompativeis = new ArrayList<String>();
+	public List<String> search(String no, int maxDistance, DistanceCalculator calculator) {
 
-		int distancia = (int) calculator.distance(word, no);
-		if (distancia <= distanciaMaxima) {
-			palavrasCompativeis.add(word);
+		List<String> compatibleWord = new ArrayList<String>();
+
+		this.distance = (int) Math.round(calculator.distance(word, no));
+		if (distance <= maxDistance) {
+			compatibleWord.add(word);
 		}
 
-		if (filhos.size() == 0) {
-			return palavrasCompativeis;
+		if (children.size() == 0) {
+			return compatibleWord;
 		}
 
-		for (int i = Math.max(1, distancia - distanciaMaxima); i <= distancia + distanciaMaxima; i++) {
+		for (int i = Math.max(1, distance - maxDistance); i <= distance + maxDistance; i++) {
 
-			Node filho = filhos.get(i);
-			if (filho != null) {
-				palavrasCompativeis.addAll(filho.search(no, distanciaMaxima, calculator));
+			Node child = children.get(i);
+
+			if (child != null) {
+				compatibleWord.addAll(child.search(no, maxDistance, calculator));
 			}
 		}
-		return palavrasCompativeis;
+		return compatibleWord;
+
+	}
+
+	public BurkhardKellerSearchResult search2(String no, int maxDistance, DistanceCalculator calculator) {
+
+		BurkhardKellerSearchResult compatibleWord = new BurkhardKellerSearchResult(maxDistance);
+
+		this.distance = (int) Math.round(calculator.distance(word, no));
+		if (distance <= maxDistance) {
+			compatibleWord.add(word);
+		}
+
+		if (children.size() == 0) {
+			return compatibleWord;
+		}
+
+		for (int i = Math.max(1, distance - maxDistance); i <= distance + maxDistance; i++) {
+
+			Node child = children.get(i);
+
+			if (child != null) {
+				// TODO
+				/*
+				 * compatibleWord.add(child.search(no, maxDistance,
+				 * calculator));
+				 */
+			}
+		}
+		return compatibleWord;
 
 	}
 
@@ -59,6 +95,16 @@ public class Node {
 
 	public String getWord() {
 		return word;
+	}
+
+	public int compareTo(Node node) {
+		if (this.distance < node.getDistance()) {
+			return -1;
+		}
+		if (this.distance > node.getDistance()) {
+			return 1;
+		}
+		return 0;
 	}
 
 }

@@ -7,10 +7,6 @@ public class KeyboardLayoutList {
 
 	private List<KeyboardLayout> layouts;
 
-	public KeyboardLayoutList() {
-		/* layouts.add(new KeyboardLayoutNeutro()); */
-	}
-
 	public void add(KeyboardLayout keyboardLayout) {
 		if (layouts == null) {
 			layouts = new ArrayList<KeyboardLayout>();
@@ -19,7 +15,7 @@ public class KeyboardLayoutList {
 	}
 
 	public KeyboardLayout getLayoutByName(String nomeLayout) {
-		nomeLayout.toUpperCase();
+		nomeLayout = nomeLayout.toUpperCase();
 		KeyboardLayout layout = null;
 		for (KeyboardLayout keyboardLayout : layouts) {
 			if (keyboardLayout.getModel().equals(nomeLayout)) {
@@ -41,10 +37,6 @@ public class KeyboardLayoutList {
 			layouts = new ArrayList<KeyboardLayout>();
 		}
 		this.layouts = list;
-	}
-
-	public List<KeyboardLayout> getLayouts() {
-		return layouts;
 	}
 
 	@Override

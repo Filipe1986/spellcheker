@@ -6,7 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.unirio.pm.Tree.BurkhardKellerTree;
-import br.unirio.pm.Tree.BurkhardKellerTreeSearchResult;
+import br.unirio.pm.Tree.BurkhardKellerSearchResult;
 import br.unirio.pm.distancia.DamerauLevenshteinCalculator;
 import br.unirio.pm.distancia.DistanceCalculator;
 import br.unirio.pm.distancia.LevenshteinCalculator;
@@ -42,7 +42,7 @@ public class TestSpellChecker {
 		DistanceCalculator calculator = new LevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary_pt-br.zip", calculator);
 
-		BurkhardKellerTreeSearchResult result1 = tree.search("casa", 1, 10);
+		BurkhardKellerSearchResult result1 = tree.search("casa", 1, 10);
 		check(result1, 0, "casa", 0.0);
 		check(result1, 1, "asa", 1.0);
 		check(result1, 2, "cas", 1.0);
@@ -54,14 +54,14 @@ public class TestSpellChecker {
 		check(result1, 8, "casta", 1.0);
 		check(result1, 9, "caca", 1.0);
 
-		BurkhardKellerTreeSearchResult result2 = tree.search("cervega", 2, 10);
+		BurkhardKellerSearchResult result2 = tree.search("cervega", 2, 10);
 		check(result2, 0, "cerveja", 1.0);
 		check(result2, 1, "cereja", 2.0);
 		check(result2, 2, "corveta", 2.0);
 		check(result2, 3, "corveia", 2.0);
 		check(result2, 4, "certeza", 2.0);
 
-		BurkhardKellerTreeSearchResult result3 = tree.search("aviea", 2, 10);
+		BurkhardKellerSearchResult result3 = tree.search("aviea", 2, 10);
 		check(result3, 0, "aia", 2.0);
 		check(result3, 1, "ave", 2.0);
 		check(result3, 2, "via", 2.0);
@@ -81,7 +81,7 @@ public class TestSpellChecker {
 		DistanceCalculator calculator = new DamerauLevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary_pt-br.zip", calculator);
 
-		BurkhardKellerTreeSearchResult result1 = tree.search("casa", 1, 10);
+		BurkhardKellerSearchResult result1 = tree.search("casa", 1, 10);
 		check(result1, 0, "casa", 0.0);
 		check(result1, 1, "asa", 1.0);
 		check(result1, 2, "cas", 1.0);
@@ -93,14 +93,14 @@ public class TestSpellChecker {
 		check(result1, 8, "casta", 1.0);
 		check(result1, 9, "caca", 1.0);
 
-		BurkhardKellerTreeSearchResult result2 = tree.search("cervega", 2, 10);
+		BurkhardKellerSearchResult result2 = tree.search("cervega", 2, 10);
 		check(result2, 0, "cerveja", 1.0);
 		check(result2, 1, "cereja", 2.0);
 		check(result2, 2, "corveta", 2.0);
 		check(result2, 3, "corveia", 2.0);
 		check(result2, 4, "certeza", 2.0);
 
-		BurkhardKellerTreeSearchResult result3 = tree.search("aviea", 2, 10);
+		BurkhardKellerSearchResult result3 = tree.search("aviea", 2, 10);
 		check(result3, 0, "aveia", 1.0);
 		check(result3, 1, "aia", 2.0);
 		check(result3, 2, "ave", 2.0);
@@ -120,7 +120,7 @@ public class TestSpellChecker {
 		DistanceCalculator calculator = new LevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary_pt-br.zip", calculator);
 
-		BurkhardKellerTreeSearchResult result = tree.search("casa", 1, 10);
+		BurkhardKellerSearchResult result = tree.search("casa", 1, 10);
 		check(result, 0, "casa", 0.0);
 		check(result, 1, "cada", 0.11);
 		check(result, 2, "caca", 0.20);
@@ -132,7 +132,7 @@ public class TestSpellChecker {
 		check(result, 8, "casal", 0.25);
 		check(result, 9, "casar", 0.25);
 
-		BurkhardKellerTreeSearchResult result2 = tree.search("cervega", 2, 10);
+		BurkhardKellerSearchResult result2 = tree.search("cervega", 2, 10);
 		check(result2, 0, "cerveja", 0.22);
 		check(result2, 1, "cereja", 0.47);
 		check(result2, 2, "xereta", 0.48);
@@ -144,7 +144,7 @@ public class TestSpellChecker {
 		check(result2, 8, "refrega", 0.59);
 		check(result2, 9, "cerca", 0.61);
 
-		BurkhardKellerTreeSearchResult result3 = tree.search("aviea", 2, 10);
+		BurkhardKellerSearchResult result3 = tree.search("aviea", 2, 10);
 		check(result3, 0, "acida", 0.23);
 		check(result3, 1, "afora", 0.34);
 		check(result3, 2, "agora", 0.34);
@@ -164,7 +164,7 @@ public class TestSpellChecker {
 		DistanceCalculator calculator = new DamerauLevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary_pt-br.zip", calculator);
 
-		BurkhardKellerTreeSearchResult result = tree.search("casa", 1, 10);
+		BurkhardKellerSearchResult result = tree.search("casa", 1, 10);
 		check(result, 0, "casa", 0.0);
 		check(result, 1, "cada", 0.11);
 		check(result, 2, "caca", 0.20);
@@ -176,7 +176,7 @@ public class TestSpellChecker {
 		check(result, 8, "casal", 0.25);
 		check(result, 9, "casar", 0.25);
 
-		BurkhardKellerTreeSearchResult result2 = tree.search("cervega", 2, 10);
+		BurkhardKellerSearchResult result2 = tree.search("cervega", 2, 10);
 		check(result2, 0, "cerveja", 0.22);
 		check(result2, 1, "cereja", 0.47);
 		check(result2, 2, "xereta", 0.48);
@@ -188,7 +188,7 @@ public class TestSpellChecker {
 		check(result2, 8, "refrega", 0.59);
 		check(result2, 9, "cerca", 0.61);
 
-		BurkhardKellerTreeSearchResult result3 = tree.search("aviea", 2, 10);
+		BurkhardKellerSearchResult result3 = tree.search("aviea", 2, 10);
 		check(result3, 0, "acida", 0.23);
 		check(result3, 1, "aveia", 0.25);
 		check(result3, 2, "afora", 0.34);
@@ -208,7 +208,7 @@ public class TestSpellChecker {
 		DistanceCalculator calculator = new LevenshteinCalculator(layout);
 		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary_pt-br.zip", calculator);
 
-		BurkhardKellerTreeSearchResult result = tree.search("casa", 1, 10);
+		BurkhardKellerSearchResult result = tree.search("casa", 1, 10);
 		check(result, 0, "casa", 0.0);
 		check(result, 1, "cana", 0.11);
 		check(result, 2, "caso", 0.11);
@@ -220,7 +220,7 @@ public class TestSpellChecker {
 		check(result, 8, "tala", 0.22);
 		check(result, 9, "tosa", 0.22);
 
-		BurkhardKellerTreeSearchResult result2 = tree.search("cervega", 2, 10);
+		BurkhardKellerSearchResult result2 = tree.search("cervega", 2, 10);
 		check(result2, 0, "corveta", 0.26);
 		check(result2, 1, "corveia", 0.35);
 		check(result2, 2, "corneta", 0.37);
@@ -233,7 +233,7 @@ public class TestSpellChecker {
 		check(result2, 9, "ternura", 0.55);
 	}
 
-	private void check(BurkhardKellerTreeSearchResult result, int position, String word, double distance) {
+	private void check(BurkhardKellerSearchResult result, int position, String word, double distance) {
 		assertEquals(word, result.getWord(position));
 		assertEquals(distance, result.getDistance(position), 0.001);
 	}

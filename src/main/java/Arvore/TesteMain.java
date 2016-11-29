@@ -17,11 +17,35 @@ public class TesteMain {
 
 	public static void main(String[] args) {
 
-		leve();
+		/* leve(); */
 		/* dadadadada(); */
 		/* novo(); */
 		/* keyboard(); */
 		querty();
+		/* testeDistancia(); */
+	}
+
+	private static void testeDistancia() {
+		KeyboardLayoutList layouts = new KeyboardLayoutReader().loadFromFile("layouts.xml");
+		KeyboardLayout layout = layouts.getLayoutByName("QWERTY");
+		layout.prepareDistances();
+
+		DistanceCalculator calculator = new LevenshteinCalculator(layout);
+		BurkhardKellerTree tree = new DictionaryReader().loadFromFile("dictionary_pt-br.zip", calculator);
+
+		double a = calculator.distance("casa", "casa");
+		System.out.println(a);
+		a = calculator.distance("casa", "cada");
+		System.out.println(a);
+		a = calculator.distance("casa", "caca");
+		System.out.println(a);
+		a = calculator.distance("casa", "cara");
+		System.out.println(a);
+		a = calculator.distance("casa", "fada");
+		System.out.println(a);
+		a = calculator.distance("casa", "vaza");
+		System.out.println(a);
+
 	}
 
 	private static void keyboard() {
@@ -33,7 +57,7 @@ public class TesteMain {
 	}
 
 	private static void dadadadada() {
-		System.out.println("Ddadada");
+		System.out.println("Dadadada");
 		KeyboardLayoutNeutro layout = new KeyboardLayoutNeutro();
 		DamerauLevenshteinCalculator d = new DamerauLevenshteinCalculator(layout);
 
@@ -78,7 +102,7 @@ public class TesteMain {
 	private static void querty() {
 
 		KeyboardLayoutList list = new KeyboardLayoutReader().loadFromFile("layouts.xml");
-		KeyboardLayout layout = list.getLayoutByName("QWERTY");
+		KeyboardLayout layout = list.getLayoutByName("qwerty");
 		System.out.println(layout.getModel());
 		layout.prepareDistances();
 		DistanceCalculator calculator = new LevenshteinCalculator(layout);
@@ -87,14 +111,13 @@ public class TesteMain {
 		ArrayList<String> palavras = DictionaryReader.fileReader("dictionary_pt-br.zip");
 		tree.addNodeList(palavras);
 
-		System.out.println("teclado querty");
+		System.out.println("teclado qwerty");
 		String palavra = "cervega";
 		System.out.println(palavra);
 		List<String> results = tree.search(palavra, 1, calculator);
 		System.out.println(results);
-		System.out.println("Mel");
-		results = tree.search("mel", 1, calculator);
-		System.out.println(results);
+		System.out.println(results.size());
+
 	}
 
 	public static void novo() {

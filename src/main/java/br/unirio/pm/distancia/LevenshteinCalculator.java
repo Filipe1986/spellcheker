@@ -23,13 +23,16 @@ public class LevenshteinCalculator extends DistanceCalculator {
 			distance[0][j] = j;
 
 		}
+		double deletion;
+		double insertion;
+		double substitution;
 
 		for (int i = 1; i <= lhs.length(); i++) {
 			for (int j = 1; j <= rhs.length(); j++) {
-				double deletion = distance[i - 1][j] + layout.getInsertDeleteDistance();
-				double insertion = distance[i][j - 1] + layout.getInsertDeleteDistance();
+				deletion = distance[i - 1][j] + layout.getInsertDeleteDistance();
+				insertion = distance[i][j - 1] + layout.getInsertDeleteDistance();
 
-				double substitution = distance[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0
+				substitution = distance[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0
 						: layout.getRelativeDistance(lhs.charAt(i - 1), rhs.charAt(j - 1)));
 
 				distance[i][j] = lowestValue(deletion, insertion, substitution);
@@ -44,5 +47,4 @@ public class LevenshteinCalculator extends DistanceCalculator {
 		return (min < substitution) ? min : substitution;
 
 	}
-
 }

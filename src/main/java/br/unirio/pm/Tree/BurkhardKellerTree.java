@@ -8,7 +8,9 @@ public class BurkhardKellerTree {
 
 	private Node root;
 
-	DistanceCalculator calculator;
+	private DistanceCalculator calculator;
+
+	private BurkhardKellerSearchResult result;
 
 	/**
 	 * Construtor
@@ -49,7 +51,7 @@ public class BurkhardKellerTree {
 			return;
 		}
 
-		int distance = (int) calculator.distance(srcNode.getWord(), newNode.getWord());
+		int distance = (int) Math.round(calculator.distance(srcNode.getWord(), newNode.getWord()));
 
 		Node bkNode = srcNode.filhosNumaDistancia(distance);
 
@@ -74,9 +76,9 @@ public class BurkhardKellerTree {
 	 * Busca que devolve arvore resultado da busca
 	 * 
 	 */
-	public BurkhardKellerTreeSearchResult search(String word, int distanciaMaxima, int numeroMaximoDePalavras) {
-		// TODO Auto-generated method stub
-		return null;
+	public BurkhardKellerSearchResult search(String word, int distanciaMaxima, int numeroMaximoDePalavras) {
+		return root.search2(word.toUpperCase(), distanciaMaxima, calculator);
+
 	}
 
 }

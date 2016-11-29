@@ -32,7 +32,6 @@ public class DictionaryReader {
 				line = line.replace(".", "");
 
 				bkTree.addNode(line);
-
 			}
 			zf.close();
 		} catch (IOException e) {

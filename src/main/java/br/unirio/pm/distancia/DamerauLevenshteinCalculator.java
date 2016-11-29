@@ -39,7 +39,7 @@ public class DamerauLevenshteinCalculator extends DistanceCalculator {
 				// Verifica se é transponivel - Damerou
 				if (isTransposable(lhs, rhs, i, j)) {
 					transposition = distance[i - 2][j - 2]
-							+ (int) layout.getNominalDistance(lhs.charAt(i - 1), rhs.charAt(j - 2));
+							+ layout.getNominalDistance(lhs.charAt(i - 1), rhs.charAt(j - 2));
 
 					distance[i][j] = lowestValue(deletion, insertion, substitution, transposition);
 
@@ -49,6 +49,7 @@ public class DamerauLevenshteinCalculator extends DistanceCalculator {
 
 			}
 		}
+
 		return distance[lhs.length()][rhs.length()];
 	}
 
