@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import br.unirio.pm.Tree.BurkhardKellerTree;
 import br.unirio.pm.distancia.DistanceCalculator;
+import br.unirio.pm.tree.BurkhardKellerTree;
 
 public class DictionaryReader {
 

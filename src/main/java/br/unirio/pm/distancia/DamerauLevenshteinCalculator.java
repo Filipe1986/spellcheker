@@ -8,6 +8,7 @@ import br.unirio.pm.keyboard.KeyboardLayout;
  */
 public class DamerauLevenshteinCalculator extends DistanceCalculator {
 
+	
 	private KeyboardLayout layout;
 
 	public DamerauLevenshteinCalculator(KeyboardLayout layout) {

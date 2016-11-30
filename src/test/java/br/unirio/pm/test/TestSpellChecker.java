@@ -5,8 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.unirio.pm.Tree.BurkhardKellerSearchResult;
-import br.unirio.pm.Tree.BurkhardKellerTree;
 import br.unirio.pm.distancia.DamerauLevenshteinCalculator;
 import br.unirio.pm.distancia.DistanceCalculator;
 import br.unirio.pm.distancia.LevenshteinCalculator;
@@ -15,6 +13,8 @@ import br.unirio.pm.keyboard.KeyboardLayoutList;
 import br.unirio.pm.keyboard.KeyboardLayoutNeutro;
 import br.unirio.pm.readers.DictionaryReader;
 import br.unirio.pm.readers.KeyboardLayoutReader;
+import br.unirio.pm.tree.BurkhardKellerSearchResult;
+import br.unirio.pm.tree.BurkhardKellerTree;
 
 /**
  * Casos de teste do verificador ortográfico

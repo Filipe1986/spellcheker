@@ -1,4 +1,4 @@
-package br.unirio.pm.Tree;
+package br.unirio.pm.tree;
 
 import java.util.ArrayList;
 import java.util.HashMap;

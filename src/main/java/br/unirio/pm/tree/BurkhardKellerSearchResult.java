@@ -1,4 +1,4 @@
-package br.unirio.pm.Tree;
+package br.unirio.pm.tree;
 
 import java.util.Iterator;
 import java.util.TreeSet;
