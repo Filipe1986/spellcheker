@@ -1,4 +1,4 @@
-package br.unirio.pm.distancia;
+package br.unirio.pm.distance;
 
 import br.unirio.pm.keyboard.KeyboardLayout;
 
@@ -8,7 +8,6 @@ import br.unirio.pm.keyboard.KeyboardLayout;
  */
 public class DamerauLevenshteinCalculator extends DistanceCalculator {
 
-	
 	private KeyboardLayout layout;
 
 	public DamerauLevenshteinCalculator(KeyboardLayout layout) {
@@ -36,6 +35,7 @@ public class DamerauLevenshteinCalculator extends DistanceCalculator {
 		double insertion;
 		double substitution;
 		double transposition;
+
 		for (int i = 1; i <= lhs.length(); i++) {
 			for (int j = 1; j <= rhs.length(); j++) {
 
@@ -90,6 +90,10 @@ public class DamerauLevenshteinCalculator extends DistanceCalculator {
 		minor = (minor < transposition) ? minor : transposition;
 		return minor;
 
+	}
+
+	public boolean isKeyboardLayoutNeutral() {
+		return layout.isNeutral();
 	}
 
 }

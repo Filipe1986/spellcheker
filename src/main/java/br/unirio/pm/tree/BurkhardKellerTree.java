@@ -1,8 +1,6 @@
 package br.unirio.pm.tree;
 
-import java.util.List;
-
-import br.unirio.pm.distancia.DistanceCalculator;
+import br.unirio.pm.distance.DistanceCalculator;
 
 public class BurkhardKellerTree {
 
@@ -10,16 +8,15 @@ public class BurkhardKellerTree {
 
 	private DistanceCalculator calculator;
 
-	private BurkhardKellerSearchResult result;
-
 	public BurkhardKellerTree(DistanceCalculator calculator) {
 		this.calculator = calculator;
 	}
 
 	/**
-	 * Adiciona no partir de string passada e adiciona o no arvore
+	 * Adiciona no a partir de string passada e adiciona o no na árvore
 	 */
 	public void addNode(String no) {
+
 		if (no == null || no.isEmpty()) {
 		} else {
 			Node newNode = new Node(no);
@@ -32,30 +29,26 @@ public class BurkhardKellerTree {
 	}
 
 	/**
-	 * Adiciona lista de palavras na árvore
-	 */
-	public void addNodeList(List<String> nodes) {
-		for (String node : nodes) {
-			addNode(node);
-		}
-	}
-
-	/**
 	 * Adiciona nó na árvore de acordo com a distancia do DistanceCalculator
 	 */
 	private void add(Node srcNode, Node newNode) {
+
 		if (srcNode.equals(newNode)) {
 			return;
 		}
 
-		int distance = (int) Math.round(calculator.distance(srcNode.getWord(), newNode.getWord()));
+		double distance = calculator.distance(srcNode.getWord(), newNode.getWord());
 
-		Node bkNode = srcNode.filhosNumaDistancia(distance);
-
-		if (bkNode == null) {
-			srcNode.addChildNode(distance, newNode);
-
+		if (!calculator.isKeyboardLayoutNeutral()) {
+			int modificador = 100;
+			distance = distance * modificador;
 		}
+
+		Node bkNode = srcNode.filhoNumaDistancia((int) distance);
+		if (bkNode == null) {
+			srcNode.addChildNode((int) distance, newNode);
+		}
+
 		// senao adiciona nó como filho
 		else {
 			add(bkNode, newNode);
@@ -65,16 +58,8 @@ public class BurkhardKellerTree {
 	/**
 	 * Funcao para busca de nó com uma distancia máxima
 	 */
-	public List<String> search(String word, int distanciaMaximaPermitida, DistanceCalculator calculator) {
-		return root.search(word.toUpperCase(), distanciaMaximaPermitida, calculator);
-	}
-
-	/**
-	 * Busca que devolve arvore resultado da busca
-	 * 
-	 */
-	public BurkhardKellerSearchResult search(String word, int distanciaMaxima, int numeroMaximoDePalavras) {
-		return root.search2(word.toUpperCase(), distanciaMaxima, calculator);
+	public BurkhardKellerTreeSearchResult search(String word, int distanciaMaximaPermitida, int maxWords) {
+		return new BurkhardKellerTreeSearchResult(root.search(word, distanciaMaximaPermitida, calculator));
 
 	}
 

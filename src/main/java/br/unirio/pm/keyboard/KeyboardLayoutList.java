@@ -23,11 +23,13 @@ public class KeyboardLayoutList {
 	/**
 	 * Retorna um KeyboardLayout de acordo com o nome de entrada
 	 */
-	public KeyboardLayout getLayoutByName(String nomeLayout) {
-		nomeLayout = nomeLayout.toUpperCase();
+	public KeyboardLayout getLayoutByName(String layoutName) {
+		
+		layoutName = layoutName.toUpperCase();
 		KeyboardLayout layout = null;
+		
 		for (KeyboardLayout keyboardLayout : layouts) {
-			if (keyboardLayout.getModel().equals(nomeLayout)) {
+			if (keyboardLayout.getModel().equals(layoutName)) {
 				layout = keyboardLayout;
 			}
 		}
@@ -41,11 +43,11 @@ public class KeyboardLayoutList {
 		return layouts;
 	}
 
-	public void setList(List<KeyboardLayout> list) {
+	public void setList(List<KeyboardLayout> layouts) {
 		if (layouts == null) {
 			layouts = new ArrayList<KeyboardLayout>();
 		}
-		this.layouts = list;
+		this.layouts = layouts;
 	}
 
 	@Override

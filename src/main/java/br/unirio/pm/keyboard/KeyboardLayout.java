@@ -72,7 +72,7 @@ public class KeyboardLayout {
 			}
 			height++;
 		}
-		calculateDistance();
+		calculateMaxDistance();
 	}
 
 	/**
@@ -121,12 +121,12 @@ public class KeyboardLayout {
 	 * Força o calculo da maior distancia
 	 */
 
-	private void calculateDistance() {
+	private void calculateMaxDistance() {
 		double max = 0;
 		for (int i = 0; i < table.length; i++) {
 			for (int j = 0; j < table.length; j++) {
-				char c1 = (char) ((char) 65 + i);
-				char c2 = (char) ((char) 65 + j);
+				char c1 = (char) ((char) CHAR_TO_POSITION + i);
+				char c2 = (char) ((char) CHAR_TO_POSITION + j);
 
 				if (getNominalDistance(c1, c2) > max)
 					max = getNominalDistance(c1, c2);
@@ -150,7 +150,16 @@ public class KeyboardLayout {
 	 * teclado
 	 */
 	public double getRelativeDistance(char firstChar, char secondChar) {
-		return (getNominalDistance(firstChar, secondChar) / maxDistance);
+		return (getNominalDistance(firstChar, secondChar) / getMaximumDistance());
+	}
+
+	/**
+	 * Diferencia o teclado neutro dos demais
+	 * 
+	 * @return
+	 */
+	public boolean isNeutral() {
+		return false;
 	}
 
 }

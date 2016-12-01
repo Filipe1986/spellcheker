@@ -5,12 +5,12 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.unirio.pm.distancia.DamerauLevenshteinCalculator;
-import br.unirio.pm.distancia.DistanceCalculator;
-import br.unirio.pm.distancia.LevenshteinCalculator;
+import br.unirio.pm.distance.DamerauLevenshteinCalculator;
+import br.unirio.pm.distance.DistanceCalculator;
+import br.unirio.pm.distance.LevenshteinCalculator;
 import br.unirio.pm.keyboard.KeyboardLayout;
 import br.unirio.pm.keyboard.KeyboardLayoutList;
-import br.unirio.pm.keyboard.KeyboardLayoutNeutro;
+import br.unirio.pm.keyboard.KeyboardLayoutNeutral;
 import br.unirio.pm.readers.KeyboardLayoutReader;
 
 /**
@@ -27,7 +27,7 @@ public class TestWordDistance {
 
 	@Test
 	public void testDemerauTecladoNeutro() {
-		KeyboardLayout layout = new KeyboardLayoutNeutro();
+		KeyboardLayout layout = new KeyboardLayoutNeutral();
 		layout.prepareDistances();
 
 		DistanceCalculator calculator = new DamerauLevenshteinCalculator(layout);
@@ -53,7 +53,7 @@ public class TestWordDistance {
 	@Test
 	public void testLevenshteintTecladoNeutro() {
 
-		KeyboardLayout layout = new KeyboardLayoutNeutro();
+		KeyboardLayout layout = new KeyboardLayoutNeutral();
 		layout.prepareDistances();
 		DistanceCalculator calculator = new LevenshteinCalculator(layout);
 

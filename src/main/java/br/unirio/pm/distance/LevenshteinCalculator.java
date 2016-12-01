@@ -1,4 +1,4 @@
-package br.unirio.pm.distancia;
+package br.unirio.pm.distance;
 
 import br.unirio.pm.keyboard.KeyboardLayout;
 
@@ -16,6 +16,7 @@ public class LevenshteinCalculator extends DistanceCalculator {
 
 		CharSequence lhs = s1;
 		CharSequence rhs = s2;
+
 		double[][] distance = new double[lhs.length() + 1][rhs.length() + 1];
 
 		for (int i = 0; i <= lhs.length(); i++) {
@@ -32,7 +33,9 @@ public class LevenshteinCalculator extends DistanceCalculator {
 
 		for (int i = 1; i <= lhs.length(); i++) {
 			for (int j = 1; j <= rhs.length(); j++) {
+
 				deletion = distance[i - 1][j] + layout.getInsertDeleteDistance();
+
 				insertion = distance[i][j - 1] + layout.getInsertDeleteDistance();
 
 				substitution = distance[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0
@@ -41,7 +44,6 @@ public class LevenshteinCalculator extends DistanceCalculator {
 				distance[i][j] = lowestValue(deletion, insertion, substitution);
 			}
 		}
-
 		return distance[lhs.length()][rhs.length()];
 	}
 
@@ -53,4 +55,9 @@ public class LevenshteinCalculator extends DistanceCalculator {
 		return (min < substitution) ? min : substitution;
 
 	}
+
+	public boolean isKeyboardLayoutNeutral() {
+		return layout.isNeutral();
+	}
+
 }
